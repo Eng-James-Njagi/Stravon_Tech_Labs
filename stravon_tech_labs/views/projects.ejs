@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/portfolio.css">
+    <link rel="stylesheet" href="/css/testimonials.css">
+     <link rel="stylesheet" href="/css/projectcta.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +32,12 @@
       <%- include('partials/header1') %>
    </header>
    <main>
-
+      <%- include('partials/portfolio') %>
+      <%- include('partials/testimonial') %>
+      <%- include('partials/projectcta') %>
    </main>
+   <footer>
+       <%- include('partials/footer') %>
+   </footer>
 </body>
 </html>
