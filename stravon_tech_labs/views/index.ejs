@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stravon Tech Labs</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/services.css">
+    <link rel="stylesheet" href="/css/info.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KMKTPKPY9E"></script>
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'G-KMKTPKPY9E');
+   </script>
+</head>
+<body>
+    <header>
+      <%- include('partials/nav') %>
+      <%- include('partials/header') %>
+    </header>
+    <main>
+       <div class="stravon-container">
+        <!-- Why Choose Stravon Section -->
+        <section class="why-choose-section">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>          
+            <div class="section-container">
+                <h2 class="section-title">Why Choose Stravon?</h2>
+                <p class="section-description">
+                    At Stravon Tech Labs, we believe every business deserves a powerful digital presence.
+                    Our team of skilled developers and designers works collaboratively to create websites and
+                    visual identities that not only look exceptional but perform flawlessly. We combine technical
+                    expertise with creative vision to deliver solutions that grow with your business.
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Expert Web Development Designs</h3>
+                        <p>Professional designs built with modern technologies and industry best practices for optimal performance and user experience.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Custom Solutions Tailored to Your Needs</h3>
+                        <p>Every project is unique, crafted specifically to align with your business objectives and target audience requirements.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Ongoing Support and Maintenance</h3>
+                        <p>Comprehensive maintenance and support services to ensure your digital presence stays strong and up-to-date.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Proven Results Across Industries</h3>
+                        <p>A successful track record of delivering impactful digital solutions across multiple industries and business sizes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      <%- include('partials/services') %>
+      <!-- Portfolio Section -->
+        <section class="portfolio-section">
+            <div class="section-container">
+                <h2 class="portfolio-title">See What We've Built</h2>
+                <p class="portfolio-description">
+                    Explore our portfolio of successful projects across various industries.
+                    From startup websites to enterprise solutions, discover how we've helped
+                    businesses achieve their digital goals.
+                </p>
+                <a href="/projects" class="cta-button">View All Projects</a>
+            </div>
+        </section>
+    </div>
+    </main>
+    <footer>
+      <%- include('partials/footer') %>
+    </footer>
+</body>
+</html>

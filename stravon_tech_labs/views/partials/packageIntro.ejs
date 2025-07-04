@@ -1,0 +1,72 @@
+ <div class="services-container">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="services-content">
+            <div class="section-header">
+                <h2 class="section-title">Service Categories</h2>
+                <p class="section-subtitle">Excellence in Every Project</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3 class="service-title">Web Development Services</h3>
+                        <p class="service-overview">We create responsive, fast-loading websites that deliver exceptional user experiences across all devices. Our development process ensures your site is optimized for search engines, accessible to all users, and built to scale with your business.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Responsive Design</span>
+                            <span class="feature-tag">SEO Optimized</span>
+                            <span class="feature-tag">Fast Loading</span>
+                            <span class="feature-tag">User Experience</span>
+                            <span class="feature-tag">Scalable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3 class="service-title">Graphic Design Services</h3>
+                        <p class="service-overview">Our graphic design services help establish and maintain a consistent brand identity across all your marketing materials. From logos to complete brand packages, we create visuals that communicate your message effectively.</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Brand Identity</span>
+                            <span class="feature-tag">Logo Design</span>
+                            <span class="feature-tag">Marketing Materials</span>
+                            <span class="feature-tag">Brand Packages</span>
+                            <span class="feature-tag">Visual Communication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <p class="cta-text">Ready to transform your business?</p>
+                <button class="cta-button">View Our Packages</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>

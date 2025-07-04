@@ -1,0 +1,653 @@
+/* Scoped styles for FAQ and Contact sections */
+.stravon-faq-contact-wrapper {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.6;
+    position: relative;
+    overflow: hidden;
+}
+
+.stravon-faq-contact-wrapper * {
+    box-sizing: border-box;
+}
+
+/* Subtle background pattern */
+.stravon-faq-contact-wrapper .stravon-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(0, 20, 39, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+    background-size: 100px 100px;
+    pointer-events: none;
+}
+
+.stravon-faq-contact-wrapper .stravon-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Headers */
+.stravon-faq-contact-wrapper .stravon-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.stravon-faq-contact-wrapper .stravon-section-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: #001427;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.stravon-faq-contact-wrapper .stravon-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border-radius: 2px;
+}
+
+.stravon-faq-contact-wrapper .stravon-section-subtitle {
+    font-size: 1.2rem;
+    color: #6b7280;
+    font-weight: 400;
+    margin-top: 1.5rem;
+}
+
+/* FAQ Section */
+.stravon-faq-contact-wrapper .stravon-faq-section {
+    margin-bottom: 6rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-item:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: #001427;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-question {
+    padding: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-question::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: linear-gradient(135deg, #001427, #FFD700);
+    transition: width 0.3s ease;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-item:hover .stravon-faq-question::before {
+    width: 4px;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-toggle {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    position: relative;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-toggle::after {
+    content: '';
+    width: 12px;
+    height: 2px;
+    background: #6b7280;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-toggle::before {
+    content: '';
+    width: 2px;
+    height: 12px;
+    background: #6b7280;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-item.stravon-active .stravon-faq-toggle {
+    background: #001427;
+    border-color: #001427;
+    transform: rotate(45deg);
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-item.stravon-active .stravon-faq-toggle::after,
+.stravon-faq-contact-wrapper .stravon-faq-item.stravon-active .stravon-faq-toggle::before {
+    background: #FFD700;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    padding: 0 2rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-item.stravon-active .stravon-faq-answer {
+    max-height: 500px;
+    opacity: 1;
+    padding: 1rem 2rem 2rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-faq-answer-content {
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+/* Contact Section */
+.stravon-faq-contact-wrapper .stravon-contact-section {
+    background: #f8fafc;
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.stravon-faq-contact-wrapper .stravon-contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #001427, #FFD700, #FFA500);
+    background-size: 200% 100%;
+    animation: stravonGradientMove 3s ease-in-out infinite;
+}
+
+@keyframes stravonGradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.stravon-faq-contact-wrapper .stravon-contact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-contact-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-group.stravon-full-width {
+    grid-column: 1 / -1;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-input,
+.stravon-faq-contact-wrapper .stravon-form-select,
+.stravon-faq-contact-wrapper .stravon-form-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    color: #1f2937;
+    font-family: inherit;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-input:focus,
+.stravon-faq-contact-wrapper .stravon-form-select:focus,
+.stravon-faq-contact-wrapper .stravon-form-textarea:focus {
+    outline: none;
+    border-color: #001427;
+    box-shadow: 0 0 0 3px rgba(0, 20, 39, 0.1);
+}
+
+.stravon-faq-contact-wrapper .stravon-form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.stravon-faq-contact-wrapper .stravon-form-input::placeholder,
+.stravon-faq-contact-wrapper .stravon-form-textarea::placeholder {
+    color: #9ca3af;
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #001427, #FFD700);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn:hover::before {
+    left: 100%;
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 20, 39, 0.3);
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn:active {
+    transform: translateY(0);
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.stravon-faq-contact-wrapper .stravon-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-info-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.stravon-faq-contact-wrapper .stravon-info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #001427, #FFD700);
+    border-radius: 16px 16px 0 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stravon-faq-contact-wrapper .stravon-info-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stravon-faq-contact-wrapper .stravon-info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.stravon-faq-contact-wrapper .stravon-info-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-info-icon {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #001427, #FFD700);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stravon-faq-contact-wrapper .stravon-info-item {
+    margin-bottom: 0.5rem;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.stravon-faq-contact-wrapper .stravon-info-item strong {
+    color: #374151;
+    font-weight: 600;
+}
+
+.stravon-faq-contact-wrapper .stravon-success-message {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+    animation: stravonSlideIn 0.5s ease-out;
+}
+
+.stravon-faq-contact-wrapper .stravon-error-message {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
+    animation: stravonSlideIn 0.5s ease-out;
+}
+
+.stravon-faq-contact-wrapper .stravon-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: stravonSpin 1s linear infinite;
+}
+
+@keyframes stravonSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Form error styling */
+.stravon-faq-contact-wrapper .stravon-form-input.stravon-error,
+.stravon-faq-contact-wrapper .stravon-form-select.stravon-error,
+.stravon-faq-contact-wrapper .stravon-form-textarea.stravon-error {
+    border-color: #e74c3c;
+    background-color: #fdf2f2;
+}
+
+.stravon-faq-contact-wrapper .stravon-field-error {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Loading button state */
+.stravon-faq-contact-wrapper .stravon-submit-btn.stravon-loading {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.stravon-faq-contact-wrapper .stravon-submit-btn.stravon-loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: stravonSpin 1s linear infinite;
+}
+
+/* FIXED: Animations - Made elements visible by default */
+.stravon-faq-contact-wrapper .stravon-slide-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stravon-faq-contact-wrapper .stravon-slide-in.stravon-animate {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stravon-faq-contact-wrapper .stravon-slide-in.stravon-animate.stravon-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes stravonSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .stravon-faq-contact-wrapper .stravon-container {
+        max-width: 1000px;
+        padding: 4rem 2rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-grid {
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .stravon-faq-contact-wrapper .stravon-contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-section {
+        padding: 3rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stravon-faq-contact-wrapper .stravon-container {
+        padding: 3rem 1rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-form {
+        padding: 2rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-faq-question {
+        padding: 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-faq-answer {
+        padding: 0 1.5rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-faq-item.stravon-active .stravon-faq-answer {
+        padding: 1rem 1.5rem 1.5rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-section-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .stravon-faq-contact-wrapper .stravon-container {
+        padding: 2rem 1rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-form {
+        padding: 1.5rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-faq-question {
+        padding: 1.25rem;
+        font-size: 0.95rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-faq-toggle {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-info-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stravon-faq-contact-wrapper .stravon-section-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-grid {
+        gap: 2rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-form-input,
+    .stravon-faq-contact-wrapper .stravon-form-select,
+    .stravon-faq-contact-wrapper .stravon-form-textarea {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-submit-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .stravon-faq-contact-wrapper .stravon-faq-item {
+        border-width: 2px;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-form-input,
+    .stravon-faq-contact-wrapper .stravon-form-select,
+    .stravon-faq-contact-wrapper .stravon-form-textarea {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .stravon-faq-contact-wrapper * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .stravon-faq-contact-wrapper .stravon-bg-pattern {
+        display: none;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-contact-form {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .stravon-faq-contact-wrapper .stravon-submit-btn {
+        display: none;
+    }
+}

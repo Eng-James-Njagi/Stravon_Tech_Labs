@@ -1,0 +1,576 @@
+/* Animated Background - STRICTLY CONTAINED */
+.zyx-ultra-floating-background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #f8f8ff !important;
+    min-height: 100vh;
+    overflow: hidden;
+    /* ADDED: Create a strict clipping boundary */
+    clip-path: inset(0);
+}
+
+.zyx-ultra-floating-decorative-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.zyx-ultra-floating-decorative-shape-primary {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+    top: 20%;
+    left: 12%;
+}
+
+.zyx-ultra-floating-decorative-shape-secondary {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #cd853f 0%, #deb887 100%);
+    top: 60%;
+    right: 15%;
+}
+
+.zyx-ultra-floating-decorative-shape-tertiary {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #f4a460 0%, #daa520 100%);
+    bottom: 30%;
+    left: 18%;
+}
+
+.zyx-ultra-floating-decorative-shape-quaternary {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+    top: 40%;
+    right: 40%;
+}
+
+/* Content Wrapper */
+.zyx-ultra-main-content-wrapper-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* Section Styling */
+.zyx-ultra-consultation-card-component,
+.zyx-ultra-quote-card-component {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    padding: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zyx-ultra-consultation-card-component:hover,
+.zyx-ultra-quote-card-component:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.zyx-ultra-section-heading-container h2 {
+    color: #001427;
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    background: linear-gradient(135deg, #001427 0%, #003366 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.zyx-ultra-section-content-wrapper {
+    margin: 35px 0;
+}
+
+.zyx-ultra-section-content-wrapper p {
+    color: #001427;
+    font-size: 1.3em;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Form Container */
+.zyx-ultra-quote-form-preview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.zyx-ultra-quote-form-field-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.zyx-ultra-quote-form-field-wrapper-full {
+    grid-column: 1 / -1;
+}
+
+.zyx-ultra-quote-form-field-wrapper label {
+    color: #001427;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.zyx-ultra-quote-form-field-wrapper input,
+.zyx-ultra-quote-form-field-wrapper select,
+.zyx-ultra-quote-form-field-wrapper textarea {
+    padding: 18px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    color: #001427;
+    font-family: inherit;
+}
+
+.zyx-ultra-quote-form-field-wrapper input:focus,
+.zyx-ultra-quote-form-field-wrapper select:focus,
+.zyx-ultra-quote-form-field-wrapper textarea:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+    background: rgba(255, 255, 255, 1);
+}
+
+.zyx-ultra-quote-form-field-wrapper input::placeholder,
+.zyx-ultra-quote-form-field-wrapper textarea::placeholder {
+    color: #6c757d;
+    opacity: 0.8;
+}
+
+.zyx-ultra-quote-form-field-wrapper textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* CTA Section */
+.zyx-ultra-call-to-action-section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.zyx-ultra-primary-cta-button-element {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #001427;
+    padding: 22px 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.4em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.zyx-ultra-primary-cta-button-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.zyx-ultra-primary-cta-button-element:hover::before {
+    left: 100%;
+}
+
+.zyx-ultra-primary-cta-button-element:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+}
+
+.zyx-ultra-primary-cta-button-element:active {
+    transform: translateY(-2px);
+}
+
+.zyx-ultra-secondary-cta-button-element {
+    background: linear-gradient(135deg, #001427 0%, #003366 100%);
+    color: #FFD700;
+    padding: 22px 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.4em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 20, 39, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.zyx-ultra-secondary-cta-button-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.zyx-ultra-secondary-cta-button-element:hover::before {
+    left: 100%;
+}
+
+.zyx-ultra-secondary-cta-button-element:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #003366 0%, #001427 100%);
+    box-shadow: 0 15px 40px rgba(0, 20, 39, 0.4);
+}
+
+.zyx-ultra-secondary-cta-button-element:active {
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .zyx-ultra-main-content-wrapper-container {
+        padding: 70px 15px;
+    }
+    
+    .zyx-ultra-quote-form-preview-container {
+        gap: 20px;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper input,
+    .zyx-ultra-quote-form-field-wrapper select,
+    .zyx-ultra-quote-form-field-wrapper textarea {
+        padding: 15px;
+        font-size: 1em;
+    }
+    
+    .zyx-ultra-primary-cta-button-element,
+    .zyx-ultra-secondary-cta-button-element {
+        padding: 18px 40px;
+        font-size: 1.2em;
+    }
+    
+    /* Static shapes for mobile */
+    .zyx-ultra-floating-decorative-shape {
+        opacity: 0.4;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-primary {
+        width: 100px;
+        height: 100px;
+        top: 25%;
+        left: 15%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-secondary {
+        width: 70px;
+        height: 70px;
+        top: 55%;
+        right: 18%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-tertiary {
+        width: 85px;
+        height: 85px;
+        bottom: 35%;
+        left: 20%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-quaternary {
+        width: 55px;
+        height: 55px;
+        top: 45%;
+        right: 45%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .zyx-ultra-main-content-wrapper-container {
+        padding: 60px 15px;
+    }
+    
+    .zyx-ultra-consultation-card-component,
+    .zyx-ultra-quote-card-component {
+        padding: 40px;
+    }
+    
+    .zyx-ultra-section-heading-container h2 {
+        font-size: 2.4em;
+    }
+    
+    .zyx-ultra-section-content-wrapper p {
+        font-size: 1.2em;
+    }
+    
+    .zyx-ultra-quote-form-preview-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .zyx-ultra-main-content-wrapper-container {
+        padding: 50px 15px;
+    }
+    
+    .zyx-ultra-consultation-card-component,
+    .zyx-ultra-quote-card-component {
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .zyx-ultra-section-heading-container h2 {
+        font-size: 2em;
+    }
+    
+    .zyx-ultra-section-content-wrapper p {
+        font-size: 1.1em;
+    }
+    
+    .zyx-ultra-quote-form-preview-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+    
+    /* FIXED: Adjusted floating shapes for mobile */
+    .zyx-ultra-floating-decorative-shape-primary {
+        top: 25%;
+        left: 15%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-secondary {
+        top: 55%;
+        right: 18%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-tertiary {
+        bottom: 35%;
+        left: 20%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-quaternary {
+        top: 45%;
+        right: 45%;
+    }
+}
+
+@media (max-width: 640px) {
+    .zyx-ultra-main-content-wrapper-container {
+        padding: 40px 10px;
+    }
+    
+    .zyx-ultra-consultation-card-component,
+    .zyx-ultra-quote-card-component {
+        padding: 25px;
+    }
+    
+    .zyx-ultra-section-heading-container h2 {
+        font-size: 1.8em;
+    }
+    
+    .zyx-ultra-section-content-wrapper p {
+        font-size: 1em;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper label {
+        font-size: 1em;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper input,
+    .zyx-ultra-quote-form-field-wrapper select,
+    .zyx-ultra-quote-form-field-wrapper textarea {
+        padding: 14px;
+        font-size: 0.95em;
+    }
+    
+    .zyx-ultra-primary-cta-button-element,
+    .zyx-ultra-secondary-cta-button-element {
+        padding: 16px 35px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .zyx-ultra-main-content-wrapper-container {
+        padding: 30px 10px;
+    }
+    
+    .zyx-ultra-consultation-card-component,
+    .zyx-ultra-quote-card-component {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .zyx-ultra-section-heading-container h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    
+    .zyx-ultra-section-content-wrapper p {
+        font-size: 0.95em;
+        line-height: 1.6;
+    }
+    
+    .zyx-ultra-quote-form-preview-container {
+        gap: 15px;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper label {
+        font-size: 0.95em;
+        margin-bottom: 8px;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper input,
+    .zyx-ultra-quote-form-field-wrapper select,
+    .zyx-ultra-quote-form-field-wrapper textarea {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+    
+    .zyx-ultra-primary-cta-button-element,
+    .zyx-ultra-secondary-cta-button-element {
+        padding: 14px 30px;
+        font-size: 1em;
+        letter-spacing: 1px;
+    }
+    
+    /* Static shapes for mobile */
+    .zyx-ultra-floating-decorative-shape {
+        opacity: 0.3;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-primary {
+        width: 80px;
+        height: 80px;
+        top: 30%;
+        left: 20%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-secondary {
+        width: 60px;
+        height: 60px;
+        top: 65%;
+        right: 25%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-tertiary {
+        width: 70px;
+        height: 70px;
+        bottom: 40%;
+        left: 25%;
+    }
+    
+    .zyx-ultra-floating-decorative-shape-quaternary {
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        right: 50%;
+    }
+}
+
+@media (max-width: 360px) {
+    .zyx-ultra-main-content-wrapper-container {
+        padding: 25px 8px;
+    }
+    
+    .zyx-ultra-consultation-card-component,
+    .zyx-ultra-quote-card-component {
+        padding: 15px;
+    }
+    
+    .zyx-ultra-section-heading-container h2 {
+        font-size: 1.4em;
+    }
+    
+    .zyx-ultra-section-content-wrapper p {
+        font-size: 0.9em;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper input,
+    .zyx-ultra-quote-form-field-wrapper select,
+    .zyx-ultra-quote-form-field-wrapper textarea {
+        padding: 10px;
+        font-size: 0.85em;
+    }
+    
+    .zyx-ultra-primary-cta-button-element,
+    .zyx-ultra-secondary-cta-button-element {
+        padding: 12px 25px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 320px) {
+    .zyx-ultra-section-heading-container h2 {
+        font-size: 1.3em;
+    }
+    
+    .zyx-ultra-section-content-wrapper p {
+        font-size: 0.85em;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper label {
+        font-size: 0.9em;
+    }
+    
+    .zyx-ultra-quote-form-field-wrapper input,
+    .zyx-ultra-quote-form-field-wrapper select,
+    .zyx-ultra-quote-form-field-wrapper textarea {
+        padding: 10px;
+        font-size: 0.8em;
+    }
+    
+    .zyx-ultra-primary-cta-button-element,
+    .zyx-ultra-secondary-cta-button-element {
+        padding: 12px 20px;
+        font-size: 0.85em;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .zyx-ultra-floating-background-container {
+        display: none;
+    }
+    
+    .zyx-ultra-primary-cta-button-element,
+    .zyx-ultra-secondary-cta-button-element {
+        background: #001427 !important;
+        color: white !important;
+        box-shadow: none !important;
+    }
+    
+    .zyx-ultra-consultation-card-component,
+    .zyx-ultra-quote-card-component {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
