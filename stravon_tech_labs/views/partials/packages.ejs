@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Service Packages</title>
+    <title>Service Packages</title>
+    <link rel="stylesheet" href="service-packages.css">
 </head>
 <body>
     <div class="sp-animated-bg"></div>
@@ -11,262 +12,669 @@
     <div class="sp-container">
         <div class="sp-header">
             <h1>Our Service Packages</h1>
-            <p>Professional solutions tailored to your business needs</p>
+            <p>Choose the perfect solution for your business needs</p>
         </div>
 
+        <!-- Tab Navigation -->
         <div class="sp-tab-nav">
-            <button class="sp-tab-btn sp-active" onclick="showTab('website')">Website Design</button>
-            <button class="sp-tab-btn" onclick="showTab('graphic')">Graphic Design</button>
+            <button class="sp-tab-btn sp-active" data-tab="web-development">Web Development</button>
+            <button class="sp-tab-btn" data-tab="graphic-design">Graphic Design</button>
+            <button class="sp-tab-btn" data-tab="specialized">Specialized</button>
         </div>
 
-        <!-- Website Design Tab -->
-        <div class="sp-tab-content sp-active" id="website">
-            <div class="sp-packages-grid">
-                
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Landing Page Package</h3>
-                        <div class="sp-package-price">KES 8,000</div>
-                    </div>
-                    <ul class="sp-package-features">
-                        <li>Single-page responsive design</li>
-                        <li>Strategic call-to-action placement</li>
-                        <li>Contact form integration</li>
-                        <li>Social media connectivity</li>
-                        <li>Basic SEO optimization</li>
-                        <li>Hosting: KES 3,000/month or KES 30,000/year</li>
-                        <li>Domain: KES 1,500/year</li>
-                        <li>Delivery: 3-5 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
-                </div>
+        <!-- Web Development Services -->
+        <div class="sp-tab-content sp-active" id="web-development">
+            <div class="sp-category-header">
+                <h2>Web Development Services</h2>
+                <p>We create responsive, fast-loading websites that deliver exceptional user experiences across all devices. Our development process ensures your site is optimized for search engines, accessible to all users, and built to scale with your business.</p>
+            </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Entry Package</h3>
-                        <div class="sp-package-price">KES 12,000</div>
-                    </div>
-                    <ul class="sp-package-features">
-                        <li>1-3 professional pages</li>
-                        <li>Mobile-responsive design</li>
-                        <li>Social media integration</li>
-                        <li>SEO foundation setup</li>
-                        <li>Contact information section</li>
-                        <li>Hosting: KES 4,000/month or KES 40,000/year</li>
-                        <li>Domain: KES 1,500/year</li>
-                        <li>Delivery: 5-7 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
-                </div>
+            <!-- Website Packages Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn sp-active" data-toggle="website-packages">
+                    <span>Website Packages</span>
+                    <span class="sp-toggle-icon">▼</span>
+                </button>
+                <div class="sp-toggle-content sp-active" id="website-packages">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Landing Page</h3>
+                                <div class="sp-package-price">KES 8,000</div>
+                                <p class="sp-package-subtitle">Perfect for simple business presence</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Single-page responsive design</li>
+                                <li>Strategic call-to-action placement</li>
+                                <li>Contact form integration</li>
+                                <li>Social media connectivity</li>
+                                <li>Basic SEO optimization</li>
+                                <li>Hosting: KES 3,000/month</li>
+                                <li>Domain: KES 1,500/year</li>
+                                <li>Delivery: 3-5 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Standard Package</h3>
-                        <div class="sp-package-price">KES 25,000</div>
-                    </div>
-                    <ul class="sp-package-features">
-                        <li>4-6 custom pages</li>
-                        <li>Responsive design</li>
-                        <li>Social media integration</li>
-                        <li>SEO optimization</li>
-                        <li>Google Maps integration</li>
-                        <li>Contact forms</li>
-                        <li>Analytics setup</li>
-                        <li>Hosting: KES 4,000/month or KES 40,000/year</li>
-                        <li>Domain: KES 1,500/year</li>
-                        <li>Delivery: 7-10 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
-                </div>
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Entry Package</h3>
+                                <div class="sp-package-price">KES 12,000</div>
+                                <p class="sp-package-subtitle">Great for small businesses</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>1-3 professional pages</li>
+                                <li>Mobile-responsive design</li>
+                                <li>Social media integration</li>
+                                <li>SEO foundation setup</li>
+                                <li>Contact information section</li>
+                                <li>Hosting: KES 4,000/month</li>
+                                <li>Domain: KES 1,500/year</li>
+                                <li>Delivery: 5-7 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Business Package</h3>
-                        <div class="sp-package-price">KES 60,000</div>
-                    </div>
-                    <ul class="sp-package-features">
-                        <li>6-10 professional pages</li>
-                        <li>Content Management System</li>
-                        <li>Media galleries</li>
-                        <li>Advanced SEO features</li>
-                        <li>Analytics dashboard</li>
-                        <li>Blog functionality</li>
-                        <li>Email setup</li>
-                        <li>6 months hosting included</li>
-                        <li>Domain included the first year</li>
-                        <li>Delivery: 14-21 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
-                </div>
+                        <div class="sp-package-card sp-featured sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Standard Package</h3>
+                                <div class="sp-package-price">KES 25,000</div>
+                                <p class="sp-package-subtitle">Most popular choice</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>4-6 custom pages</li>
+                                <li>Responsive design</li>
+                                <li>Social media integration</li>
+                                <li>SEO optimization</li>
+                                <li>Google Maps integration</li>
+                                <li>Contact forms</li>
+                                <li>Analytics setup</li>
+                                <li>Delivery: 7-10 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Premium Package</h3>
-                        <div class="sp-package-price">KES 120,000</div>
-                    </div>
-                    <ul class="sp-package-features">
-                        <li>11-16 custom pages</li>
-                        <li>Backend integration</li>
-                        <li>Admin dashboard</li>
-                        <li>Database-driven forms</li>
-                        <li>User account system</li>
-                        <li>Advanced security</li>
-                        <li>Performance optimization</li>
-                        <li>12 months hosting included</li>
-                        <li>Domain included the first year</li>
-                        <li>Delivery: 21-30 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
-                </div>
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Business Package</h3>
+                                <div class="sp-package-price">KES 60,000</div>
+                                <p class="sp-package-subtitle">For growing businesses</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>6-10 professional pages</li>
+                                <li>Content Management System</li>
+                                <li>Media galleries</li>
+                                <li>Advanced SEO features</li>
+                                <li>Analytics dashboard</li>
+                                <li>Blog functionality</li>
+                                <li>Email setup</li>
+                                <li>6 months hosting included</li>
+                                <li>Delivery: 14-21 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
 
-                <div class="sp-package-card sp-featured">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">E-commerce Basic</h3>
-                        <div class="sp-package-price">KES 200,000</div>
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Premium Package</h3>
+                                <div class="sp-package-price">KES 120,000</div>
+                                <p class="sp-package-subtitle">Enterprise-level solution</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>11-16 custom pages</li>
+                                <li>Backend integration</li>
+                                <li>Admin dashboard</li>
+                                <li>Database-driven forms</li>
+                                <li>User account system</li>
+                                <li>Advanced security</li>
+                                <li>Performance optimization</li>
+                                <li>12 months hosting included</li>
+                                <li>Delivery: 21-30 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
                     </div>
-                    <ul class="sp-package-features">
-                        <li>Up to 100 products</li>
-                        <li>Shopping cart functionality</li>
-                        <li>M-Pesa integration</li>
-                        <li>Order management</li>
-                        <li>Customer accounts</li>
-                        <li>Inventory tracking</li>
-                        <li>Mobile optimization</li>
-                        <li>12 months of support included</li>
-                        <li>Delivery: 30-45 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
                 </div>
+            </div>
 
-                <div class="sp-package-card sp-featured">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">E-commerce Advanced</h3>
-                        <div class="sp-package-price">KES 350,000</div>
+            <!-- E-commerce Solutions Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn" data-toggle="ecommerce-solutions">
+                    <span>E-commerce Solutions</span>
+                    <span class="sp-toggle-icon">▶</span>
+                </button>
+                <div class="sp-toggle-content" id="ecommerce-solutions">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">E-commerce Basic</h3>
+                                <div class="sp-package-price">KES 200,000</div>
+                                <p class="sp-package-subtitle">Start selling online</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Up to 100 products</li>
+                                <li>Shopping cart functionality</li>
+                                <li>M-Pesa integration</li>
+                                <li>Order management</li>
+                                <li>Customer accounts</li>
+                                <li>Inventory tracking</li>
+                                <li>Mobile optimization</li>
+                                <li>12 months of support included</li>
+                                <li>Delivery: 30-45 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-featured sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">E-commerce Advanced</h3>
+                                <div class="sp-package-price">KES 350,000</div>
+                                <p class="sp-package-subtitle">Complete online store</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Unlimited products</li>
+                                <li>Advanced M-Pesa integration</li>
+                                <li>Multiple payment gateways</li>
+                                <li>Discount system</li>
+                                <li>Advanced inventory management</li>
+                                <li>Sales analytics</li>
+                                <li>CRM integration</li>
+                                <li>API integrations</li>
+                                <li>Advanced security</li>
+                                <li>12 months of support included</li>
+                                <li>Delivery: 45-60 business days</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
                     </div>
-                    <ul class="sp-package-features">
-                        <li>Unlimited products</li>
-                        <li>Advanced M-Pesa integration</li>
-                        <li>Multiple payment gateways</li>
-                        <li>Discount system</li>
-                        <li>Advanced inventory management</li>
-                        <li>Sales analytics</li>
-                        <li>CRM integration</li>
-                        <li>API integrations</li>
-                        <li>Advanced security</li>
-                        <li>12 months of support included</li>
-                        <li>Delivery: 45-60 business days</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
                 </div>
+            </div>
 
+            <!-- Maintenance Plans Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn" data-toggle="maintenance-plans">
+                    <span>Maintenance Plans</span>
+                    <span class="sp-toggle-icon">▶</span>
+                </button>
+                <div class="sp-toggle-content" id="maintenance-plans">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Basic Maintenance</h3>
+                                <div class="sp-package-price">KES 4,000/month</div>
+                                <p class="sp-package-subtitle">Essential upkeep</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Up to 5 pages</li>
+                                <li>Security updates</li>
+                                <li>Weekly backups</li>
+                                <li>Email support</li>
+                                <li>1 hour monthly updates</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Standard Maintenance</h3>
+                                <div class="sp-package-price">KES 6,000/month</div>
+                                <p class="sp-package-subtitle">Comprehensive care</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>6-10 pages</li>
+                                <li>Daily backups</li>
+                                <li>Priority support</li>
+                                <li>3 hours of monthly updates</li>
+                                <li>Performance reports</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-featured sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Premium Maintenance</h3>
+                                <div class="sp-package-price">KES 9,000/month</div>
+                                <p class="sp-package-subtitle">Complete management</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>11-20 pages</li>
+                                <li>24/7 monitoring</li>
+                                <li>Emergency support</li>
+                                <li>5 hours of monthly updates</li>
+                                <li>SEO optimization</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">E-commerce Maintenance</h3>
+                                <div class="sp-package-price">KES 20,000/month</div>
+                                <p class="sp-package-subtitle">Store optimization</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Any size online store</li>
+                                <li>Product management</li>
+                                <li>Payment monitoring</li>
+                                <li>10 hours of monthly updates</li>
+                                <li>Sales analysis</li>
+                                <li>Conversion optimization</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Graphic Design Tab -->
-        <div class="sp-tab-content" id="graphic">
-            <div class="sp-packages-grid">
-                
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Logo Design</h3>
-                        <div class="sp-package-price">KES 10,000</div>
-                    </div>
-                    <ul class="sp-package-features">
-                        <li>3 original concept designs</li>
-                        <li>3 rounds of revisions</li>
-                        <li>All file formats (PNG, JPG, SVG, AI)</li>
-                        <li>Brand guidelines document</li>
-                        <li>Commercial usage rights</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
-                </div>
+        <!-- Graphic Design Services -->
+        <div class="sp-tab-content" id="graphic-design">
+            <div class="sp-category-header">
+                <h2>Graphic Design Services</h2>
+                <p>Our graphic design services help establish and maintain a consistent brand identity across all your marketing materials. From logos to complete brand packages, we create visuals that communicate your message effectively.</p>
+            </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Marketing Materials</h3>
-                        <div class="sp-package-price">KES 1,000</div>
-                        <div class="sp-package-subtitle">per item</div>
+            <!-- Logo Design Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn sp-active" data-toggle="logo-design">
+                    <span>Logo Design</span>
+                    <span class="sp-toggle-icon">▼</span>
+                </button>
+                <div class="sp-toggle-content sp-active" id="logo-design">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-featured sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Logo Design</h3>
+                                <div class="sp-package-price">KES 10,000</div>
+                                <p class="sp-package-subtitle">Professional brand identity</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>3 original concept designs</li>
+                                <li>3 rounds of revisions</li>
+                                <li>All file formats (PNG, JPG, SVG, AI)</li>
+                                <li>Brand guidelines document</li>
+                                <li>Commercial usage rights</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
                     </div>
-                    <ul class="sp-package-features">
-                        <li>Business Cards</li>
-                        <li>Flyers</li>
-                        <li>Posters</li>
-                        <li>Banners</li>
-                        <li>Certificates</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
                 </div>
+            </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Digital Assets</h3>
-                        <div class="sp-package-price">Starting at KES 250</div>
+            <!-- Marketing Materials Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn" data-toggle="marketing-materials">
+                    <span>Marketing Materials</span>
+                    <span class="sp-toggle-icon">▶</span>
+                </button>
+                <div class="sp-toggle-content" id="marketing-materials">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Business Cards</h3>
+                                <div class="sp-package-price">KES 1,000</div>
+                                <p class="sp-package-subtitle">Professional networking</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Custom design</li>
+                                <li>High-quality print ready</li>
+                                <li>Multiple format options</li>
+                                <li>Brand consistency</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Flyers</h3>
+                                <div class="sp-package-price">KES 1,000</div>
+                                <p class="sp-package-subtitle">Promotional materials</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Eye-catching design</li>
+                                <li>Print-ready format</li>
+                                <li>Custom messaging</li>
+                                <li>Brand alignment</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Posters</h3>
+                                <div class="sp-package-price">KES 1,000</div>
+                                <p class="sp-package-subtitle">Large format advertising</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>High-impact design</li>
+                                <li>Large format optimization</li>
+                                <li>Attention-grabbing visuals</li>
+                                <li>Professional layout</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Banners</h3>
+                                <div class="sp-package-price">KES 1,000</div>
+                                <p class="sp-package-subtitle">Event & web banners</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Web & print formats</li>
+                                <li>Event customization</li>
+                                <li>Brand integration</li>
+                                <li>Multiple size options</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
                     </div>
-                    <ul class="sp-package-features">
-                        <li>Social Media Carousels: KES 250 per slide</li>
-                        <li>Photo Manipulation: KES 1,000</li>
-                        <li>Digital Banners: KES 1,000</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
                 </div>
+            </div>
 
-                <div class="sp-package-card">
-                    <div class="sp-package-header">
-                        <h3 class="sp-package-title">Publications</h3>
-                        <div class="sp-package-price">KES 500</div>
-                        <div class="sp-package-subtitle">per page</div>
+            <!-- Digital Assets Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn" data-toggle="digital-assets">
+                    <span>Digital Assets</span>
+                    <span class="sp-toggle-icon">▶</span>
+                </button>
+                <div class="sp-toggle-content" id="digital-assets">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Social Media Carousels</h3>
+                                <div class="sp-package-price">KES 250/slide</div>
+                                <p class="sp-package-subtitle">Engaging social content</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Platform-optimized sizing</li>
+                                <li>Consistent branding</li>
+                                <li>Engaging visuals</li>
+                                <li>Multiple format delivery</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Photo Manipulation</h3>
+                                <div class="sp-package-price">KES 1,000</div>
+                                <p class="sp-package-subtitle">Professional editing</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Advanced retouching</li>
+                                <li>Background removal</li>
+                                <li>Color correction</li>
+                                <li>Creative effects</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Digital Banners</h3>
+                                <div class="sp-package-price">KES 1,000</div>
+                                <p class="sp-package-subtitle">Web advertising</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Web-optimized formats</li>
+                                <li>Responsive design</li>
+                                <li>Call-to-action focused</li>
+                                <li>Multiple size variations</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
                     </div>
-                    <ul class="sp-package-features">
-                        <li>Magazine Design</li>
-                        <li>Company Profile</li>
-                        <li>Brochures</li>
-                        <li>Annual Reports</li>
-                        <li>Catalogs</li>
-                    </ul>
-                    <button class="sp-package-btn">Choose Package</button>
                 </div>
+            </div>
 
+            <!-- Publications Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn" data-toggle="publications">
+                    <span>Publications</span>
+                    <span class="sp-toggle-icon">▶</span>
+                </button>
+                <div class="sp-toggle-content" id="publications">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Magazine Design</h3>
+                                <div class="sp-package-price">KES 500/page</div>
+                                <p class="sp-package-subtitle">Professional layouts</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Professional typography</li>
+                                <li>Custom layouts</li>
+                                <li>Print-ready formatting</li>
+                                <li>Brand consistency</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Company Profile</h3>
+                                <div class="sp-package-price">KES 500/page</div>
+                                <p class="sp-package-subtitle">Corporate presentation</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Professional design</li>
+                                <li>Corporate branding</li>
+                                <li>Content organization</li>
+                                <li>Print & digital formats</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Brochures</h3>
+                                <div class="sp-package-price">KES 500/page</div>
+                                <p class="sp-package-subtitle">Marketing collateral</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Tri-fold & bi-fold designs</li>
+                                <li>Marketing focused</li>
+                                <li>Professional imagery</li>
+                                <li>Call-to-action placement</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specialized Services -->
+        <div class="sp-tab-content" id="specialized">
+            <div class="sp-category-header">
+                <h2>Specialized Services</h2>
+                <p>Advanced technical services to enhance your digital presence and streamline your business operations.</p>
+            </div>
+
+            <!-- Specialized Services Toggle -->
+            <div class="sp-toggle-section">
+                <button class="sp-toggle-btn sp-active" data-toggle="specialized-services">
+                    <span>Specialized Services</span>
+                    <span class="sp-toggle-icon">▼</span>
+                </button>
+                <div class="sp-toggle-content sp-active" id="specialized-services">
+                    <div class="sp-packages-grid">
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">M-Pesa Integration</h3>
+                                <div class="sp-package-price">KES 25,000</div>
+                                <p class="sp-package-subtitle">Mobile payment solution</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Secure payment processing</li>
+                                <li>Transaction reporting</li>
+                                <li>Automated receipt generation</li>
+                                <li>Testing and deployment</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">SEO Management</h3>
+                                <div class="sp-package-price">KES 15,000/month</div>
+                                <p class="sp-package-subtitle">Search optimization</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Keyword research and optimization</li>
+                                <li>Content strategy development</li>
+                                <li>Technical SEO implementation</li>
+                                <li>Monthly performance reports</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-featured sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Social Media Management</h3>
+                                <div class="sp-package-price">KES 20,000/month</div>
+                                <p class="sp-package-subtitle">Complete social presence</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Content calendar creation</li>
+                                <li>Daily posting across platforms</li>
+                                <li>Community engagement</li>
+                                <li>Analytics and reporting</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Custom API Integration</h3>
+                                <div class="sp-package-price">KES 40,000-60,000</div>
+                                <p class="sp-package-subtitle">System connections</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>Third-party system connections</li>
+                                <li>Data synchronization</li>
+                                <li>Testing and documentation</li>
+                                <li>Ongoing support</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+
+                        <div class="sp-package-card sp-loading">
+                            <div class="sp-package-header">
+                                <h3 class="sp-package-title">Training Sessions</h3>
+                                <div class="sp-package-price">KES 7,000/session</div>
+                                <p class="sp-package-subtitle">Personalized training</p>
+                            </div>
+                            <ul class="sp-package-features">
+                                <li>2-hour personalized training</li>
+                                <li>Custom materials provided</li>
+                                <li>30 days of email support</li>
+                                <li>Website management guidance</li>
+                            </ul>
+                            <button class="sp-package-btn">Get Started</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function showTab(tabName) {
-            // Hide all tab contents
-            const tabContents = document.querySelectorAll('.sp-tab-content');
-            tabContents.forEach(tab => {
-                tab.classList.remove('sp-active');
+        // Tab functionality
+        document.querySelectorAll('.sp-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.sp-tab-btn').forEach(b => b.classList.remove('sp-active'));
+                document.querySelectorAll('.sp-tab-content').forEach(c => c.classList.remove('sp-active'));
+                
+                // Add active class to clicked tab and corresponding content
+                btn.classList.add('sp-active');
+                document.getElementById(tabId).classList.add('sp-active');
+                
+                // Reset all toggles in the new tab
+                const newTabContent = document.getElementById(tabId);
+                newTabContent.querySelectorAll('.sp-toggle-btn').forEach(toggleBtn => {
+                    toggleBtn.classList.remove('sp-active');
+                    toggleBtn.querySelector('.sp-toggle-icon').textContent = '▶';
+                });
+                newTabContent.querySelectorAll('.sp-toggle-content').forEach(content => {
+                    content.classList.remove('sp-active');
+                });
+                
+                // Activate first toggle in new tab
+                const firstToggle = newTabContent.querySelector('.sp-toggle-btn');
+                const firstContent = newTabContent.querySelector('.sp-toggle-content');
+                if (firstToggle && firstContent) {
+                    firstToggle.classList.add('sp-active');
+                    firstToggle.querySelector('.sp-toggle-icon').textContent = '▼';
+                    firstContent.classList.add('sp-active');
+                }
+                
+                // Animate cards
+                animateCards();
             });
+        });
 
-            // Remove active class from all buttons
-            const tabButtons = document.querySelectorAll('.sp-tab-btn');
-            tabButtons.forEach(btn => {
-                btn.classList.remove('sp-active');
+        // Toggle functionality
+        document.querySelectorAll('.sp-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const toggleId = btn.dataset.toggle;
+                const content = document.getElementById(toggleId);
+                const icon = btn.querySelector('.sp-toggle-icon');
+                
+                // Toggle active state
+                btn.classList.toggle('sp-active');
+                content.classList.toggle('sp-active');
+                
+                // Update icon
+                if (btn.classList.contains('sp-active')) {
+                    icon.textContent = '▼';
+                } else {
+                    icon.textContent = '▶';
+                }
+                
+                // Animate cards when content is shown
+                if (content.classList.contains('sp-active')) {
+                    setTimeout(() => {
+                        animateCards();
+                    }, 100);
+                }
             });
+        });
 
-            // Show selected tab content
-            document.getElementById(tabName).classList.add('sp-active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('sp-active');
+        // Animate cards function
+        function animateCards() {
+            const cards = document.querySelectorAll('.sp-toggle-content.sp-active .sp-package-card');
+            cards.forEach((card, index) => {
+                card.classList.add('sp-loading');
+                setTimeout(() => {
+                    card.classList.remove('sp-loading');
+                    card.classList.add('sp-loaded');
+                }, index * 100);
+            });
         }
 
-        // Add smooth scrolling and entrance animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.sp-package-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'sp-fadeInUp 0.6s ease-out forwards';
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
+        // Initial animation
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                animateCards();
+            }, 500);
+        });
 
-            cards.forEach(card => {
-                observer.observe(card);
+        // Package button click handlers
+        document.querySelectorAll('.sp-package-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Add click animation
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 150);
+                
+                // You can add your actual functionality here
+                console.log('Package selected:', btn.closest('.sp-package-card').querySelector('.sp-package-title').textContent);
             });
         });
     </script>
