@@ -1,0 +1,420 @@
+ <!-- Chat Widget -->
+    <div class="chat-backdrop" id="chatBackdrop"></div>
+    
+    <div class="chat-bubble-container">
+        <div class="chat-bubble" id="chatBubble">
+            <div class="chat-bubble-icon">💬</div>
+        </div>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-avatar">S</div>
+                <div class="chat-info">
+                    <h4>Sarah</h4>
+                    <p>Project Coordinator • Stravon Tech Labs</p>
+                </div>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message assistant">
+                    <div class="message-avatar">S</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            Hey there! I'm Sarah from Stravon Tech Labs. I love getting to know businesses and helping them figure out what they really need. What kind of work do you do?
+                        </div>
+                        <div class="quick-suggestions">
+                            <button class="suggestion-btn" onclick="sendQuickMessage('I run a small business')">I run a small business</button>
+                            <button class="suggestion-btn" onclick="sendQuickMessage('I\'m starting a new company')">I'm starting a new company</button>
+                            <button class="suggestion-btn" onclick="sendQuickMessage('I need help with my website')">I need help with my website</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <textarea class="chat-input" id="chatInput" placeholder="Tell me about your business..." rows="1"></textarea>
+                <button class="send-button" id="sendButton">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// 1. First, define the ConversationalAI class
+class ConversationalAI {
+    constructor() {
+        this.conversationHistory = [];
+        this.sessionId = null;
+        this.isTyping = false;
+        this.conversationContext = {
+            businessType: null,
+            challenges: [],
+            goals: [],
+            stage: 'discovery',
+            messageCount: 0
+        };
+    }
+
+    async getResponse(userMessage) {
+        if (this.isTyping) return;
+        
+        this.isTyping = true;
+        
+        try {
+            // Add user message to history
+            this.conversationHistory.push(userMessage);
+            
+            // Make API call to backend
+            const response = await fetch('/api/chat/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: userMessage,
+                    conversationHistory: this.conversationHistory,
+                    userId: this.sessionId
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            // Add AI response to history
+            this.conversationHistory.push(data.response);
+            
+            // Update conversation context
+            this.updateContext(data.context);
+            
+            // Increment message count
+            this.conversationContext.messageCount++;
+            
+            return data.response;
+            
+        } catch (error) {
+            console.error('Error getting AI response:', error);
+            return this.getFallbackResponse(error);
+        } finally {
+            this.isTyping = false;
+        }
+    }
+
+    updateContext(newContext) {
+        if (newContext) {
+            this.conversationContext = { ...this.conversationContext, ...newContext };
+        }
+    }
+
+    getFallbackResponse(error) {
+        const fallbackResponses = [
+            "I'm having trouble connecting right now. Could you please try again?",
+            "Sorry, I encountered an issue. Let me try to help you differently.",
+            "I'm experiencing some technical difficulties. Please bear with me.",
+            "Something went wrong on my end. Could you repeat that?"
+        ];
+        
+        return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+    }
+
+    // Initialize session
+    async initializeSession() {
+        try {
+            const response = await fetch('/api/chat/session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                this.sessionId = data.sessionId;
+                return this.sessionId;
+            }
+        } catch (error) {
+            console.error('Error initializing session:', error);
+            this.sessionId = this.generateSessionId();
+            return this.sessionId;
+        }
+    }
+
+    // Generate a simple session ID if API fails
+    generateSessionId() {
+        return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Reset conversation
+    resetConversation() {
+        this.conversationHistory = [];
+        this.conversationContext = {
+            businessType: null,
+            challenges: [],
+            goals: [],
+            stage: 'discovery',
+            messageCount: 0
+        };
+    }
+
+    // Get conversation summary
+    getConversationSummary() {
+        return {
+            messageCount: this.conversationContext.messageCount,
+            businessType: this.conversationContext.businessType,
+            challenges: this.conversationContext.challenges,
+            goals: this.conversationContext.goals,
+            stage: this.conversationContext.stage,
+            historyLength: this.conversationHistory.length
+        };
+    }
+
+    // Check if conversation is active
+    isConversationActive() {
+        return this.conversationHistory.length > 0;
+    }
+
+    // Get last message
+    getLastMessage() {
+        return this.conversationHistory[this.conversationHistory.length - 1] || null;
+    }
+
+    // Clear typing indicator
+    clearTyping() {
+        this.isTyping = false;
+    }
+
+    // Set business context
+    setBusinessContext(businessType, challenges = [], goals = []) {
+        this.conversationContext.businessType = businessType;
+        this.conversationContext.challenges = challenges;
+        this.conversationContext.goals = goals;
+    }
+
+    // Update conversation stage
+    updateStage(newStage) {
+        this.conversationContext.stage = newStage;
+    }
+}
+
+// 2. Then, wait for DOM to load before using the class
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the AI and chat functionality
+    const chatAI = new ConversationalAI();
+    let isTyping = false;
+
+    // DOM elements
+    const chatBubble = document.getElementById('chatBubble');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatBackdrop = document.getElementById('chatBackdrop');
+    const chatClose = document.getElementById('chatClose');
+    const chatInput = document.getElementById('chatInput');
+    const sendButton = document.getElementById('sendButton');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Check if all elements exist
+    if (!chatBubble || !chatWindow || !chatBackdrop || !chatClose || !chatInput || !sendButton || !chatMessages) {
+        console.error('Chat widget elements not found. Please check your HTML IDs.');
+        return;
+    }
+
+    // Initialize session when page loads
+    chatAI.initializeSession().then(() => {
+        console.log('Chat session initialized');
+    });
+
+    // Open chat window
+    function openChat() {
+        chatWindow.classList.add('open');
+        chatBackdrop.classList.add('open');
+        chatBubble.classList.remove('has-new-message');
+        
+        // Focus on input after animation
+        setTimeout(() => {
+            chatInput.focus();
+        }, 400);
+    }
+
+    // Close chat window
+    function closeChat() {
+        chatWindow.classList.remove('open');
+        chatBackdrop.classList.remove('open');
+    }
+
+    // Toggle chat window
+    function toggleChat() {
+        if (chatWindow.classList.contains('open')) {
+            closeChat();
+        } else {
+            openChat();
+        }
+    }
+
+    // Send message function
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message || isTyping) return;
+
+        // Add user message to chat
+        addMessageToChat('user', message);
+        
+        // Clear input
+        chatInput.value = '';
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        try {
+            // Get AI response
+            const response = await chatAI.getResponse(message);
+            
+            // Remove typing indicator
+            hideTypingIndicator();
+            
+            // Add AI response to chat
+            addMessageToChat('assistant', response);
+            
+        } catch (error) {
+            console.error('Error sending message:', error);
+            hideTypingIndicator();
+            addMessageToChat('assistant', 'Sorry, I encountered an error. Please try again.');
+        }
+    }
+
+    // Add message to chat interface
+    function addMessageToChat(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = sender === 'user' ? 'U' : 'S';
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+        
+        const messageText = document.createElement('div');
+        messageText.className = 'message-text';
+        messageText.textContent = message;
+        
+        messageContent.appendChild(messageText);
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(messageContent);
+        
+        chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Show typing indicator
+    function showTypingIndicator() {
+        isTyping = true;
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message assistant';
+        typingDiv.id = 'typingIndicator';
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = 'S';
+        
+        const typingContent = document.createElement('div');
+        typingContent.className = 'typing-indicator';
+        
+        const typingText = document.createElement('span');
+        typingText.textContent = 'Sarah is typing';
+        
+        const typingDots = document.createElement('div');
+        typingDots.className = 'typing-dots';
+        
+        for (let i = 0; i < 3; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'typing-dot';
+            typingDots.appendChild(dot);
+        }
+        
+        typingContent.appendChild(typingText);
+        typingContent.appendChild(typingDots);
+        typingDiv.appendChild(avatar);
+        typingDiv.appendChild(typingContent);
+        
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Hide typing indicator
+    function hideTypingIndicator() {
+        isTyping = false;
+        const typingIndicator = document.getElementById('typingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    // Handle quick suggestion clicks - make it globally available
+    window.sendQuickMessage = function(message) {
+        chatInput.value = message;
+        sendMessage();
+    };
+
+    // Auto-resize textarea
+    function autoResizeInput() {
+        chatInput.style.height = 'auto';
+        chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+    }
+
+    // Event Listeners
+    chatBubble.addEventListener('click', toggleChat);
+    chatClose.addEventListener('click', closeChat);
+    chatBackdrop.addEventListener('click', closeChat);
+
+    // Send button click
+    sendButton.addEventListener('click', sendMessage);
+
+    // Enter key to send message
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Auto-resize input on typing
+    chatInput.addEventListener('input', autoResizeInput);
+
+    // Prevent chat window from closing when clicking inside it
+    chatWindow.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Handle escape key to close chat
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chatWindow.classList.contains('open')) {
+            closeChat();
+        }
+    });
+
+    // Update send button state based on input
+    chatInput.addEventListener('input', () => {
+        if (chatInput.value.trim()) {
+            sendButton.style.opacity = '1';
+            sendButton.style.transform = 'scale(1)';
+        } else {
+            sendButton.style.opacity = '0.6';
+            sendButton.style.transform = 'scale(0.95)';
+        }
+    });
+
+    // Initialize send button state
+    sendButton.style.opacity = '0.6';
+    sendButton.style.transform = 'scale(0.95)';
+
+    console.log('Chat widget initialized successfully');
+});
+    </script>
