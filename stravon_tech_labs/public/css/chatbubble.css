@@ -393,14 +393,15 @@
     }
 }
 
-/* Alternative: Keep it right-aligned to avoid transform conflicts */
+/* Better mobile responsive design */
+/* Better mobile responsive design */
 @media (max-width: 768px) {
     .chat-window {
         width: calc(100vw - 20px);
-        height: calc(100vh - 40px);
+        height: 80vh; /* Increased from 70vh */
+        max-height: 600px; /* Increased from 500px */
         bottom: 10px;
         right: 10px;
-        /* Keep original transform intact */
         border-radius: 15px;
     }
     
@@ -417,7 +418,8 @@
 @media (max-width: 480px) {
     .chat-window {
         width: calc(100vw - 10px);
-        height: calc(100vh - 20px);
+        height: 75vh; /* Increased from 65vh */
+        max-height: 550px; /* Increased from 450px */
         bottom: 5px;
         right: 5px;
         border-radius: 10px;
@@ -435,6 +437,30 @@
     
     .chat-bubble-icon {
         font-size: 20px;
+    }
+    
+    /* Ensure input area is always visible */
+    .chat-input-container {
+        padding: 15px;
+        position: sticky;
+        bottom: 0;
+        background: white;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        z-index: 10;
+    }
+    
+    /* Adjust header for mobile */
+    .chat-header {
+        padding: 15px;
+        min-height: 60px;
+    }
+    
+    /* Ensure messages area is scrollable */
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        margin-bottom: 0;
     }
 }
 
