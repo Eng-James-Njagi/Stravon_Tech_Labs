@@ -107,7 +107,7 @@ class AIController {
             // Fallback response
             res.json({
                 success: true,
-                response: "I'm sorry, I'm having some technical difficulties right now. Let me connect you with our team directly. You can reach us at info@stravontechlabs.com or call us. We'd love to help with your project!",
+                response: "I'm sorry, I'm having some technical difficulties right now. Let me connect you with our team directly. You can reach us at midnightalpha031@gmail.com or call us 0105140326. We'd love to help with your project!",
                 fallback: true,
                 error: error.message
             });

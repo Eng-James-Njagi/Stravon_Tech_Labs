@@ -1,5 +1,3 @@
-// Add this file as: services/conversationManager.js
-
 class ConversationManager {
     // Analyze conversation and determine stage/context
     analyzeConversation(conversationHistory, currentContext = {}) {

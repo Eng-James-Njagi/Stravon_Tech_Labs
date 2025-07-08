@@ -3,18 +3,23 @@ const aiConfig = require('../config/aiConfig');
 
 class AIModelManager {
   constructor() {
-    this.models = ['gemini', 'openai', 'huggingface', 'cohere'];
-    this.currentModel = 'gemini';
-    this.conversationContext = new Map();
-    this.requestLimits = {
-      gemini: { used: 0, limit: 1500, resetTime: Date.now() + 24 * 60 * 60 * 1000 },
-      openai: { used: 0, limit: 2500, resetTime: Date.now() + 24 * 60 * 60 * 1000 },
-      huggingface: { used: 0, limit: 1000, resetTime: Date.now() + 60 * 60 * 1000 },
-      cohere: { used: 0, limit: 100, resetTime: Date.now() + 30 * 24 * 60 * 60 * 1000 }
-    };
-  }
+  this.models = ['gemini', 'openai', 'huggingface', 'cohere'];
+  this.currentModel = 'gemini';
+  this.conversationContext = new Map();
+  this.requestLimits = {
+    gemini: { used: 0, limit: 1500, resetTime: Date.now() + 24 * 60 * 60 * 1000 },
+    openai: { used: 0, limit: 2500, resetTime: Date.now() + 24 * 60 * 60 * 1000 },
+    huggingface: { used: 0, limit: 1000, resetTime: Date.now() + 60 * 60 * 1000 },
+    cohere: { used: 0, limit: 100, resetTime: Date.now() + 30 * 24 * 60 * 60 * 1000 }
+  };
+}
 
-  async getResponse(userMessage, conversationHistory, userId) {
+
+async getResponse(userMessage, conversationHistory, userId) {
+  let attempts = 0;
+  const maxAttempts = this.models.length;
+  
+  while (attempts < maxAttempts) {
     try {
       // Check if current model is available
       if (!this.isModelAvailable(this.currentModel)) {
@@ -39,15 +44,31 @@ class AIModelManager {
         conversationStage: context.stage,
         suggestions: this.generateSuggestions(context)
       };
+      
     } catch (error) {
-      console.error('AI Model Manager Error:', error);
-      return this.getFallbackResponse(userMessage);
+      attempts++;
+      console.error(`Attempt ${attempts} failed with model ${this.currentModel}:`, error.message);
+      
+      // Try next model
+      const nextModel = this.getNextAvailableModel();
+      if (nextModel !== this.currentModel) {
+        this.currentModel = nextModel;
+        continue;
+      }
+      
+      // If all models failed, return fallback
+      if (attempts >= maxAttempts) {
+        console.error('All AI models failed, returning fallback response');
+        return this.getFallbackResponse(userMessage);
+      }
     }
   }
+}
 
-  async generateResponse(userMessage, context, modelName) {
-    const model = aiConfig.models[modelName];
-    
+async generateResponse(userMessage, context, modelName) {
+  const model = aiConfig.models[modelName];
+  
+  try {
     switch (modelName) {
       case 'gemini':
         return await this.callGemini(userMessage, context, model);
@@ -60,7 +81,29 @@ class AIModelManager {
       default:
         throw new Error(`Unknown model: ${modelName}`);
     }
+  } catch (error) {
+    // Handle rate limit errors specifically
+    if (error.response?.status === 429 || error.code === 'RATE_LIMIT_EXCEEDED') {
+      console.log(`Rate limit hit for ${modelName}, switching to next model`);
+      
+      // Mark current model as unavailable
+      this.requestLimits[modelName].used = this.requestLimits[modelName].limit;
+      
+      // Get next available model
+      const nextModel = this.getNextAvailableModel();
+      
+      // If we have a different model available, try it
+      if (nextModel && nextModel !== modelName) {
+        console.log(`Switching from ${modelName} to ${nextModel}`);
+        this.currentModel = nextModel;
+        return await this.generateResponse(userMessage, context, nextModel);
+      }
+    }
+    
+    // Re-throw the error if it's not a rate limit or no alternatives
+    throw error;
   }
+}
 
   async callGemini(userMessage, context, model) {
     if (!model.apiKey) {
@@ -91,13 +134,14 @@ class AIModelManager {
     return response.data.candidates[0].content.parts[0].text;
   }
 
-  async callOpenAI(userMessage, context, model) {
-    if (!model.apiKey) {
-      throw new Error('OpenAI API key not configured');
-    }
+async callOpenAI(userMessage, context, model) {
+  if (!model.apiKey) {
+    throw new Error('OpenAI API key not configured');
+  }
 
-    const prompt = this.buildPrompt(userMessage, context);
-    
+  const prompt = this.buildPrompt(userMessage, context);
+  
+  try {
     const response = await axios.post(
       model.endpoint,
       {
@@ -119,15 +163,28 @@ class AIModelManager {
     );
 
     return response.data.choices[0].message.content;
+  } catch (error) {
+    console.error('OpenAI API Error:', {
+      status: error.response?.status,
+      message: error.message,
+      data: error.response?.data
+    });
+    
+    const enhancedError = new Error(`OpenAI API failed: ${error.message}`);
+    enhancedError.response = error.response;
+    enhancedError.originalError = error;
+    throw enhancedError;
+  }
+}
+
+async callHuggingFace(userMessage, context, model) {
+  if (!model.apiKey) {
+    throw new Error('HuggingFace API key not configured');
   }
 
-  async callHuggingFace(userMessage, context, model) {
-    if (!model.apiKey) {
-      throw new Error('HuggingFace API key not configured');
-    }
-
-    const prompt = this.buildPrompt(userMessage, context);
-    
+  const prompt = this.buildPrompt(userMessage, context);
+  
+  try {
     const response = await axios.post(
       model.endpoint,
       {
@@ -147,8 +204,19 @@ class AIModelManager {
     );
 
     return response.data[0].generated_text.replace(prompt, '').trim();
+  } catch (error) {
+    console.error('HuggingFace API Error:', {
+      status: error.response?.status,
+      message: error.message,
+      data: error.response?.data
+    });
+    
+    const enhancedError = new Error(`HuggingFace API failed: ${error.message}`);
+    enhancedError.response = error.response;
+    enhancedError.originalError = error;
+    throw enhancedError;
   }
-
+}
   async callCohere(userMessage, context, model) {
     if (!model.apiKey) {
       throw new Error('Cohere API key not configured');
@@ -319,14 +387,22 @@ Respond as Sarah, keeping it conversational and under 100 words. Ask a follow-up
     return limit.used < limit.limit;
   }
 
-  getNextAvailableModel() {
-    for (const model of this.models) {
-      if (this.isModelAvailable(model)) {
-        return model;
-      }
+getNextAvailableModel() {
+  // Get current model index
+  const currentIndex = this.models.indexOf(this.currentModel);
+  
+  // Try models starting from the next one
+  for (let i = 1; i < this.models.length; i++) {
+    const nextIndex = (currentIndex + i) % this.models.length;
+    const model = this.models[nextIndex];
+    
+    if (this.isModelAvailable(model)) {
+      return model;
     }
-    return 'gemini'; // Fallback to primary model
   }
+  
+  return this.models[0];
+}
 
   updateRequestLimits(modelName) {
     if (this.requestLimits[modelName]) {

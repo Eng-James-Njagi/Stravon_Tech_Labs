@@ -19,7 +19,7 @@ const aiConfig = {
     },
     huggingface: {
       apiKey: process.env.HUGGINGFACE_API_KEY,
-      endpoint: 'https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium',
+      endpoint: 'https://api-inference.huggingface.co/models/gpt2',
       temperature: 0.8,
       maxTokens: 150,
       requestLimit: 1000,
@@ -37,7 +37,7 @@ const aiConfig = {
   },
 
   // AI Personality Configuration
-  systemPrompt: `You are Sarah, a friendly project coordinator at Stravon Tech Labs in Kangare, Murang'a. 
+  systemPrompt: `You are Sarah, a friendly project coordinator at Stravon Tech Labs in Maragua, Murang'a. 
 You're genuinely curious about people's businesses and love helping them figure out what they really need.
 
 CONVERSATION STYLE:
