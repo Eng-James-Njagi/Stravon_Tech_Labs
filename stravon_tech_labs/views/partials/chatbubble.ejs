@@ -1,4 +1,4 @@
- <!-- Chat Widget -->
+<!-- Chat Widget -->
     <div class="chat-backdrop" id="chatBackdrop"></div>
     
     <div class="chat-bubble-container">
@@ -24,9 +24,9 @@
                             Hey there! I'm Sarah from Stravon Tech Labs. I love getting to know businesses and helping them figure out what they really need. What kind of work do you do?
                         </div>
                         <div class="quick-suggestions">
-                            <button class="suggestion-btn" onclick="sendQuickMessage('I run a small business')">I run a small business</button>
-                            <button class="suggestion-btn" onclick="sendQuickMessage('I\'m starting a new company')">I'm starting a new company</button>
-                            <button class="suggestion-btn" onclick="sendQuickMessage('I need help with my website')">I need help with my website</button>
+                            <button class="suggestion-btn" data-message="I run a small business">I run a small business</button>
+                            <button class="suggestion-btn" data-message="I'm starting a new company">I'm starting a new company</button>
+                            <button class="suggestion-btn" data-message="I need help with my website">I need help with my website</button>
                         </div>
                     </div>
                 </div>
@@ -45,12 +45,13 @@
     </div>
 
     <script>
-// 1. First, define the ConversationalAI class
+// Enhanced ConversationalAI class with all fixes
 class ConversationalAI {
     constructor() {
         this.conversationHistory = [];
         this.sessionId = null;
         this.isTyping = false;
+        this.lastApiResponse = null; // Store the last API response for suggestions
         this.conversationContext = {
             businessType: null,
             challenges: [],
@@ -69,7 +70,7 @@ class ConversationalAI {
             // Add user message to history
             this.conversationHistory.push(userMessage);
             
-            // Make API call to backend
+            // Make API call to backend - Using correct field names
             const response = await fetch('/api/chat/message', {
                 method: 'POST',
                 headers: {
@@ -77,7 +78,7 @@ class ConversationalAI {
                 },
                 body: JSON.stringify({
                     message: userMessage,
-                    conversationHistory: this.conversationHistory,
+                    sessionId: this.sessionId,
                     userId: this.sessionId
                 })
             });
@@ -88,23 +89,41 @@ class ConversationalAI {
 
             const data = await response.json();
             
-            // Add AI response to history
-            this.conversationHistory.push(data.response);
+            // Store the full API response for accessing suggestions later
+            this.lastApiResponse = data;
             
-            // Update conversation context
-            this.updateContext(data.context);
+            // FIXED: Extract the actual message text from the nested response
+            const aiMessage = data.response.response; // Get the actual message text
+            
+            // Add AI response to history
+            this.conversationHistory.push(aiMessage);
+            
+            // Update conversation context with session data
+            this.updateContext(data.sessionData);
             
             // Increment message count
             this.conversationContext.messageCount++;
             
-            return data.response;
+            // Return the actual message text, not the whole response object
+            return aiMessage;
             
         } catch (error) {
             console.error('Error getting AI response:', error);
+            this.lastApiResponse = null;
             return this.getFallbackResponse(error);
         } finally {
             this.isTyping = false;
         }
+    }
+
+    // Method to get the last API response (for accessing suggestions)
+    getLastApiResponse() {
+        return this.lastApiResponse;
+    }
+
+    // Method to get suggestions from the last response
+    getLastSuggestions() {
+        return this.lastApiResponse?.response?.suggestions || [];
     }
 
     updateContext(newContext) {
@@ -154,6 +173,7 @@ class ConversationalAI {
     // Reset conversation
     resetConversation() {
         this.conversationHistory = [];
+        this.lastApiResponse = null;
         this.conversationContext = {
             businessType: null,
             challenges: [],
@@ -203,7 +223,7 @@ class ConversationalAI {
     }
 }
 
-// 2. Then, wait for DOM to load before using the class
+// Wait for DOM to load before initializing
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize the AI and chat functionality
     const chatAI = new ConversationalAI();
@@ -256,39 +276,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Send message function
-    async function sendMessage() {
-        const message = chatInput.value.trim();
-        if (!message || isTyping) return;
-
-        // Add user message to chat
-        addMessageToChat('user', message);
-        
-        // Clear input
-        chatInput.value = '';
-        
-        // Show typing indicator
-        showTypingIndicator();
-        
-        try {
-            // Get AI response
-            const response = await chatAI.getResponse(message);
-            
-            // Remove typing indicator
-            hideTypingIndicator();
-            
-            // Add AI response to chat
-            addMessageToChat('assistant', response);
-            
-        } catch (error) {
-            console.error('Error sending message:', error);
-            hideTypingIndicator();
-            addMessageToChat('assistant', 'Sorry, I encountered an error. Please try again.');
-        }
-    }
-
-    // Add message to chat interface
-    function addMessageToChat(sender, message) {
+    // Enhanced addMessageToChat function that can handle suggestions
+    function addMessageToChat(sender, message, suggestions = null) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
         
@@ -304,6 +293,23 @@ document.addEventListener('DOMContentLoaded', function() {
         messageText.textContent = message;
         
         messageContent.appendChild(messageText);
+        
+        // Add suggestions if provided and this is an assistant message
+        if (suggestions && sender === 'assistant' && Array.isArray(suggestions) && suggestions.length > 0) {
+            const suggestionsDiv = document.createElement('div');
+            suggestionsDiv.className = 'quick-suggestions';
+            
+            suggestions.forEach(suggestion => {
+                const suggestionBtn = document.createElement('button');
+                suggestionBtn.className = 'suggestion-btn';
+                suggestionBtn.setAttribute('data-message', suggestion);
+                suggestionBtn.textContent = suggestion;
+                suggestionsDiv.appendChild(suggestionBtn);
+            });
+            
+            messageContent.appendChild(suggestionsDiv);
+        }
+        
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(messageContent);
         
@@ -311,6 +317,52 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Scroll to bottom
         chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Send message function with suggestions support
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message || isTyping) return;
+
+        // Add user message to chat
+        addMessageToChat('user', message);
+        
+        // Clear input
+        chatInput.value = '';
+        
+        // Reset input height
+        chatInput.style.height = 'auto';
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        try {
+            // Get AI response
+            const response = await chatAI.getResponse(message);
+            
+            // Remove typing indicator
+            hideTypingIndicator();
+            
+            // Get suggestions from the API response
+            const suggestions = chatAI.getLastSuggestions();
+            
+            // Add AI response to chat with suggestions
+            addMessageToChat('assistant', response, suggestions);
+            
+        } catch (error) {
+            console.error('Error sending message:', error);
+            hideTypingIndicator();
+            addMessageToChat('assistant', 'Sorry, I encountered an error. Please try again.');
+        }
+        
+        // Update send button state
+        updateSendButtonState();
+    }
+
+    // Send quick message function
+    function sendQuickMessage(message) {
+        chatInput.value = message;
+        sendMessage();
     }
 
     // Show typing indicator
@@ -357,16 +409,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Handle quick suggestion clicks - make it globally available
-    window.sendQuickMessage = function(message) {
-        chatInput.value = message;
-        sendMessage();
-    };
-
     // Auto-resize textarea
     function autoResizeInput() {
         chatInput.style.height = 'auto';
         chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+    }
+
+    // Update send button state
+    function updateSendButtonState() {
+        if (chatInput.value.trim()) {
+            sendButton.style.opacity = '1';
+            sendButton.style.transform = 'scale(1)';
+        } else {
+            sendButton.style.opacity = '0.6';
+            sendButton.style.transform = 'scale(0.95)';
+        }
     }
 
     // Event Listeners
@@ -385,8 +442,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Auto-resize input on typing
-    chatInput.addEventListener('input', autoResizeInput);
+    // Auto-resize input on typing and update send button state
+    chatInput.addEventListener('input', () => {
+        autoResizeInput();
+        updateSendButtonState();
+    });
 
     // Prevent chat window from closing when clicking inside it
     chatWindow.addEventListener('click', (e) => {
@@ -400,21 +460,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Update send button state based on input
-    chatInput.addEventListener('input', () => {
-        if (chatInput.value.trim()) {
-            sendButton.style.opacity = '1';
-            sendButton.style.transform = 'scale(1)';
-        } else {
-            sendButton.style.opacity = '0.6';
-            sendButton.style.transform = 'scale(0.95)';
+    // Handle quick suggestion buttons using event delegation
+    chatMessages.addEventListener('click', (e) => {
+        if (e.target.classList.contains('suggestion-btn')) {
+            const message = e.target.getAttribute('data-message');
+            if (message) {
+                sendQuickMessage(message);
+            }
         }
     });
 
     // Initialize send button state
-    sendButton.style.opacity = '0.6';
-    sendButton.style.transform = 'scale(0.95)';
+    updateSendButtonState();
 
-    console.log('Chat widget initialized successfully');
+    console.log('Chat widget initialized successfully with all enhancements');
 });
     </script>

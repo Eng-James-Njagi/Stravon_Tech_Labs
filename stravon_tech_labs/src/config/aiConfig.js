@@ -2,7 +2,7 @@ const aiConfig = {
   models: {
     gemini: {
       apiKey: process.env.GEMINI_API_KEY,
-      endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
+      endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
       temperature: 0.7,
       maxTokens: 200,
       requestLimit: 1500,

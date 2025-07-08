@@ -226,8 +226,25 @@ Respond as Sarah, keeping it conversational and under 100 words. Ask a follow-up
 
     // Update context based on recent messages
     if (conversationHistory.length > 0) {
-      const lastMessage = conversationHistory[conversationHistory.length - 1].toLowerCase();
-      this.updateContextFromMessage(context, lastMessage);
+      // FIXED: Handle conversation history properly
+      const lastMessageObj = conversationHistory[conversationHistory.length - 1];
+      
+      // Handle different possible structures of conversation history
+      let lastMessage = '';
+      if (typeof lastMessageObj === 'string') {
+        lastMessage = lastMessageObj.toLowerCase();
+      } else if (lastMessageObj && typeof lastMessageObj === 'object') {
+        // Try different possible property names
+        lastMessage = (lastMessageObj.content || 
+                     lastMessageObj.message || 
+                     lastMessageObj.text || 
+                     lastMessageObj.userMessage || 
+                     '').toLowerCase();
+      }
+      
+      if (lastMessage) {
+        this.updateContextFromMessage(context, lastMessage);
+      }
     }
 
     return context;

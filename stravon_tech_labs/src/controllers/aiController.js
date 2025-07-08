@@ -1,10 +1,11 @@
 const AIModelManager = require('../services/aiModelManager');
 const conversationManager = require('../services/conversationManager');
-const pricingService = require('../services/pricingService');
+const PricingService = require('../services/pricingService'); // Import the class
 
 class AIController {
     constructor() {
         this.aiManager = new AIModelManager();
+        this.pricingService = new PricingService(); // Instantiate the class
         this.activeSessions = new Map();
     }
 
@@ -49,8 +50,8 @@ class AIController {
             session.currentStage = conversationAnalysis.stage;
             session.conversationContext = conversationAnalysis.context;
 
-            // Check if pricing discussion is appropriate
-            const pricingReady = pricingService.checkPricingTiming(session.conversationHistory);
+            // Check if pricing discussion is appropriate - use this.pricingService
+            const pricingReady = this.pricingService.checkPricingTiming(session.conversationHistory);
             
             // Get AI response with progressive disclosure
             const aiResponse = await this.aiManager.getResponse(
@@ -64,8 +65,8 @@ class AIController {
                 }
             );
 
-            // Validate pricing in response
-            const validatedResponse = pricingService.validatePricing(
+            // Validate pricing in response - use this.pricingService
+            const validatedResponse = this.pricingService.validatePricing(
                 aiResponse,
                 session.currentStage
             );
