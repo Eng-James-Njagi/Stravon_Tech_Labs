@@ -1,5 +1,26 @@
 const aiConfig = {
   models: {
+    // Primary Model - Fastest Response
+    groq: {
+      apiKey: process.env.GROQ_API_KEY,
+      endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+      model: 'llama3-8b-8192',
+      temperature: 0.7,
+      maxTokens: 200,
+      requestLimit: 6000,
+      resetPeriod: 'daily'
+    },
+    // Secondary Model - Good Quality
+    mistral: {
+      apiKey: process.env.MISTRAL_API_KEY,
+      endpoint: 'https://api.mistral.ai/v1/chat/completions',
+      model: 'mistral-small-latest',
+      temperature: 0.7,
+      maxTokens: 200,
+      requestLimit: 1000,
+      resetPeriod: 'daily'
+    },
+    // Fallback Models
     gemini: {
       apiKey: process.env.GEMINI_API_KEY,
       endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
@@ -7,23 +28,6 @@ const aiConfig = {
       maxTokens: 200,
       requestLimit: 1500,
       resetPeriod: 'daily'
-    },
-    openai: {
-      apiKey: process.env.OPENAI_API_KEY,
-      endpoint: 'https://api.openai.com/v1/chat/completions',
-      model: 'gpt-3.5-turbo',
-      temperature: 0.6,
-      maxTokens: 180,
-      requestLimit: 2500,
-      resetPeriod: 'credit_based'
-    },
-    huggingface: {
-      apiKey: process.env.HUGGINGFACE_API_KEY,
-      endpoint: 'https://api-inference.huggingface.co/models/gpt2',
-      temperature: 0.8,
-      maxTokens: 150,
-      requestLimit: 1000,
-      resetPeriod: 'hourly'
     },
     cohere: {
       apiKey: process.env.COHERE_API_KEY,

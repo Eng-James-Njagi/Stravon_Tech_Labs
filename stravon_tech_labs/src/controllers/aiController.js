@@ -7,6 +7,14 @@ class AIController {
         this.aiManager = new AIModelManager();
         this.pricingService = new PricingService(); // Instantiate the class
         this.activeSessions = new Map();
+        
+        // Track model usage for monitoring
+        this.modelUsageStats = {
+            groq: { requests: 0, errors: 0, lastUsed: null },
+            mistral: { requests: 0, errors: 0, lastUsed: null },
+            gemini: { requests: 0, errors: 0, lastUsed: null },
+            cohere: { requests: 0, errors: 0, lastUsed: null }
+        };
     }
 
     // Handle chat messages with enhanced logic
@@ -65,6 +73,9 @@ class AIController {
                 }
             );
 
+            // Track model usage
+            this.updateModelUsageStats(this.aiManager.currentModel, false);
+
             // Validate pricing in response - use this.pricingService
             const validatedResponse = this.pricingService.validatePricing(
                 aiResponse,
@@ -98,20 +109,122 @@ class AIController {
                     pricingDiscussed: pricingReady
                 },
                 conversationSummary: conversationSummary,
-                modelUsed: this.aiManager.currentModel
+                modelUsed: this.aiManager.currentModel,
+                modelPerformance: this.getModelPerformanceInfo()
             });
 
         } catch (error) {
             console.error('AI Controller Error:', error);
             
-            // Fallback response
+            // Track model error
+            if (this.aiManager.currentModel) {
+                this.updateModelUsageStats(this.aiManager.currentModel, true);
+            }
+
+            // Enhanced fallback response based on error type
+            let fallbackResponse = this.generateFallbackResponse(error);
+            
             res.json({
                 success: true,
-                response: "I'm sorry, I'm having some technical difficulties right now. Let me connect you with our team directly. You can reach us at midnightalpha031@gmail.com or call us 0105140326. We'd love to help with your project!",
+                response: fallbackResponse,
                 fallback: true,
-                error: error.message
+                error: error.message,
+                modelUsed: this.aiManager.currentModel,
+                errorType: this.categorizeError(error)
             });
         }
+    }
+
+    // Update model usage statistics
+    updateModelUsageStats(model, isError = false) {
+        if (this.modelUsageStats[model]) {
+            this.modelUsageStats[model].requests++;
+            this.modelUsageStats[model].lastUsed = new Date();
+            
+            if (isError) {
+                this.modelUsageStats[model].errors++;
+            }
+        }
+    }
+
+    // Get model performance information
+    getModelPerformanceInfo() {
+        const currentModel = this.aiManager.currentModel;
+        if (!currentModel || !this.modelUsageStats[currentModel]) {
+            return null;
+        }
+
+        const stats = this.modelUsageStats[currentModel];
+        return {
+            model: currentModel,
+            requests: stats.requests,
+            errors: stats.errors,
+            errorRate: stats.requests > 0 ? (stats.errors / stats.requests * 100).toFixed(2) : 0,
+            lastUsed: stats.lastUsed
+        };
+    }
+
+    // Generate appropriate fallback response based on error
+    generateFallbackResponse(error) {
+        const errorMessage = error.message?.toLowerCase() || '';
+        
+        // Rate limiting errors (especially for Groq)
+        if (errorMessage.includes('rate limit') || errorMessage.includes('quota') || errorMessage.includes('429')) {
+            return "I'm experiencing high demand right now, but I'm here to help! Let me connect you directly with our team. You can reach us at midnightalpha031@gmail.com or call 0105140326. We'd love to discuss your project needs!";
+        }
+        
+        // API key or authentication errors
+        if (errorMessage.includes('unauthorized') || errorMessage.includes('api key') || errorMessage.includes('401')) {
+            return "I'm having some technical difficulties with my systems. Please reach out to our team directly at midnightalpha031@gmail.com or call 0105140326. We're ready to help with your web development and design needs!";
+        }
+        
+        // Network or connection errors
+        if (errorMessage.includes('network') || errorMessage.includes('timeout') || errorMessage.includes('connection')) {
+            return "I'm experiencing connectivity issues right now. Don't worry - our team is still available to help! Contact us at midnightalpha031@gmail.com or call 0105140326 to discuss your project.";
+        }
+        
+        // Model-specific errors
+        if (errorMessage.includes('groq') || errorMessage.includes('mistral')) {
+            return "I'm switching to backup systems to ensure I can help you. If you need immediate assistance, please contact our team at midnightalpha031@gmail.com or call 0105140326. We're here to support your business goals!";
+        }
+        
+        // Default fallback
+        return "I'm sorry, I'm having some technical difficulties right now. Let me connect you with our team directly. You can reach us at midnightalpha031@gmail.com or call 0105140326. We'd love to help with your project!";
+    }
+
+    // Categorize error types for better monitoring
+    categorizeError(error) {
+        const errorMessage = error.message?.toLowerCase() || '';
+        
+        if (errorMessage.includes('rate limit') || errorMessage.includes('quota') || errorMessage.includes('429')) {
+            return 'RATE_LIMIT';
+        }
+        
+        if (errorMessage.includes('unauthorized') || errorMessage.includes('api key') || errorMessage.includes('401')) {
+            return 'AUTHENTICATION';
+        }
+        
+        if (errorMessage.includes('network') || errorMessage.includes('timeout') || errorMessage.includes('connection')) {
+            return 'NETWORK';
+        }
+        
+        if (errorMessage.includes('groq')) {
+            return 'GROQ_ERROR';
+        }
+        
+        if (errorMessage.includes('mistral')) {
+            return 'MISTRAL_ERROR';
+        }
+        
+        if (errorMessage.includes('gemini')) {
+            return 'GEMINI_ERROR';
+        }
+        
+        if (errorMessage.includes('cohere')) {
+            return 'COHERE_ERROR';
+        }
+        
+        return 'UNKNOWN';
     }
 
     // Generate conversation summary for lead tracking
@@ -234,7 +347,8 @@ class AIController {
                     challenges: session.conversationContext.challenges || [],
                     goals: session.conversationContext.goals || [],
                     conversationSummary: this.formatConversationForEmail(session)
-                }
+                },
+                modelStats: this.modelUsageStats
             });
 
         } catch (error) {
@@ -280,6 +394,15 @@ class AIController {
         summary.push(`Lead Quality Score: ${leadQuality}/100`);
         
         return summary.join('\n');
+    }
+
+    // Get model usage statistics (for monitoring)
+    getModelUsageStats() {
+        return {
+            ...this.modelUsageStats,
+            totalRequests: Object.values(this.modelUsageStats).reduce((sum, stat) => sum + stat.requests, 0),
+            totalErrors: Object.values(this.modelUsageStats).reduce((sum, stat) => sum + stat.errors, 0)
+        };
     }
 
     // Clean up old sessions (call periodically)
