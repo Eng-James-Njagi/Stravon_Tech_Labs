@@ -9,8 +9,8 @@ const servicePageNavigator = {
             category: "website",
             priority: 1,
             targetBusinessType: ["startup", "small", "new"],
-            estimatedTime: "2-3 weeks",
-            startingPrice: "$1,500"
+            estimatedTime: "3-5 business days",
+            startingPrice: "Ksh 12,000"
         },
         businessWebsite: {
             id: "#business-website-section", 
@@ -20,8 +20,8 @@ const servicePageNavigator = {
             category: "website",
             priority: 2,
             targetBusinessType: ["established", "medium", "growing"],
-            estimatedTime: "3-4 weeks",
-            startingPrice: "$2,500"
+            estimatedTime: "14-21 business days",
+            startingPrice: "Ksh 25,000"
         },
         ecommerce: {
             id: "#ecommerce-section",
@@ -31,8 +31,8 @@ const servicePageNavigator = {
             category: "website",
             priority: 3,
             targetBusinessType: ["retail", "product-based", "established"],
-            estimatedTime: "4-6 weeks",
-            startingPrice: "$3,500"
+            estimatedTime: "30-45 business days",
+            startingPrice: "Ksh 200,000"
         },
         premiumSolutions: {
             id: "#premium-solutions-section",
@@ -42,8 +42,8 @@ const servicePageNavigator = {
             category: "website",
             priority: 4,
             targetBusinessType: ["enterprise", "large", "complex"],
-            estimatedTime: "6-12 weeks",
-            startingPrice: "$5,000"
+            estimatedTime: "45-60 business days",
+            startingPrice: "Ksh 350,000"
         },
         logoDesign: {
             id: "#logo-design-section",
@@ -53,8 +53,8 @@ const servicePageNavigator = {
             category: "design",
             priority: 1,
             targetBusinessType: ["all"],
-            estimatedTime: "1-2 weeks",
-            startingPrice: "$500"
+            estimatedTime: "3-5 business days",
+            startingPrice: "Ksh 10,000"
         },
         brandIdentity: {
             id: "#brand-identity-section",
@@ -64,8 +64,8 @@ const servicePageNavigator = {
             category: "design",
             priority: 2,
             targetBusinessType: ["established", "growing"],
-            estimatedTime: "2-3 weeks",
-            startingPrice: "$1,200"
+            estimatedTime: "10-14 business days",
+            startingPrice: "Ksh 20,000"
         },
         marketingMaterials: {
             id: "#marketing-materials-section",
@@ -75,8 +75,8 @@ const servicePageNavigator = {
             category: "marketing",
             priority: 1,
             targetBusinessType: ["all"],
-            estimatedTime: "1-2 weeks",
-            startingPrice: "$300"
+            estimatedTime: "10-14 business days",
+            startingPrice: "Ksh 1000"
         }
     },
 
