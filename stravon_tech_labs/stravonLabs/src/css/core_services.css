@@ -1,0 +1,171 @@
+.core{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 1em;
+   width: 90%;
+   margin: 0 auto; 
+}
+
+.core h2{
+   font-size: 40px;
+   font-family: "Roboto";
+}
+
+.coreCont{
+   display: flex;
+   align-items: center;
+   gap: 2em;
+   padding: 1em 1em; 
+   justify-content: center;
+   flex-wrap: wrap;
+   width: 100%; 
+}
+
+.coreContainer{
+   display: flex;
+   overflow: hidden;
+   flex-direction: column;
+   align-items: center;
+   background: #D4AF37;
+   border-radius: 8px;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+   height: 450px;
+   max-width: 400px;
+   flex: 0 1 400px; 
+}
+
+.coreText{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 4px;
+   text-align: center;
+   background: transparent;
+   padding: 10px;
+   margin-top: 10px;
+}
+
+.coreText h3{
+   font-size: 30px;
+   font-family: "Roboto Condensed";
+   font-weight: 600;
+}
+
+.coreText p{
+   font-family: "Archivo";
+   font-size: 22px;
+   font-weight: 300;
+}
+
+.coreImage{
+   width: 100%;
+   height: 200px;
+   object-fit: cover;
+   display: block;
+   border-radius: 8px;
+}
+
+@media(max-width: 980px){
+   .core{
+      width: 90%;
+   }
+   
+   .core h2{
+      font-size: 36px;
+   }
+   
+   .coreContainer{
+      height: 420px;
+      max-width: 350px;
+      flex: 0 1 350px;
+   }
+   
+   .coreImage{
+      height: 180px;
+   }
+   
+   .coreText h3{
+      font-size: 28px;
+   }
+   
+   .coreText p{
+      font-size: 20px;
+   }
+}
+
+@media(max-width: 780px){
+   .core{
+      width: 92%;
+   }
+   
+   .coreCont{
+      gap: 2em;
+      
+   }
+   
+   .core h2{
+      font-size: 34px;
+   }
+   
+   .coreContainer{
+      height: 380px;
+      max-width: 300px;
+      flex: 0 1 300px;
+   }
+   
+   .coreImage{
+      height: 160px;
+   }
+   
+   .coreText{
+      padding: 8px;
+   }
+   
+   .coreText h3{
+      font-size: 26px;
+   }
+   
+   .coreText p{
+      font-size: 19px;
+   }
+}
+
+@media(max-width: 480px){
+   .core{
+      width: 90%;
+   }
+   
+   .coreCont{
+      gap: 2em;
+      
+   }
+   
+   .core h2{
+      font-size: 32px;
+   }
+   
+   .coreContainer{
+      height: 300px;
+      max-width: 80%;
+      flex: 0 1 80%;
+   }
+   
+   .coreImage{
+      height: 150px;
+   }
+   
+   .coreText{
+      gap: 2px;
+      padding: 8px;
+   }
+   
+   .coreText h3{
+      font-size: 24px;
+   }
+   
+   .coreText p{
+      font-size: 18px;
+   }
+}
