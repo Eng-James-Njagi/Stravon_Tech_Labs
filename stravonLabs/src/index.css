@@ -1,0 +1,21 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+   background:#F7F6F3;
+   padding:0;
+   margin:0;
+   box-sizing:border-box;
+   overflow-x: clip;
+}
+
+html{
+  overflow-x: clip;
+}
+
+button{
+    cursor:pointer;
+}
+

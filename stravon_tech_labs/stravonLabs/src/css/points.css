@@ -1,0 +1,105 @@
+.points{
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   gap:1em;
+   padding:2em;
+}
+.point{
+   display:flex;
+   align-items:center;
+   width:80%;
+   gap:1em;
+}
+.pointText{
+   gap:20px;
+   display:flex;
+   flex-direction:column;
+   flex-wrap:wrap;
+}
+.pointText h3{
+   font-size:46px;
+   font-family:"Roboto"
+}
+.pointText p{
+   font-size:28px;
+   line-height:1;
+   font-family:"Open Sans";
+   font-weight:200;
+}
+.pointImage{
+   height:80%;
+   width:auto;
+   object-fit:cover;
+}
+@media (min-width: 780px) {
+  .point.reverse .pointText  { order: 0; }
+  .point.reverse .pointImage { order: 1; }
+}
+
+@media(max-width:980px){
+   .points{
+      flex-direction:column;
+      align-items:center;
+      gap:4em;
+   }
+   .point{
+      align-items:center;
+      gap:40px;
+   }
+   .pointText{
+      align-items:center;
+      text-align:center;
+      line-height:1;
+      gap:10px;
+      width:100%;
+   }
+   .pointText h3{
+      font-size:40px;
+   }
+   .pointText p{
+      font-size:24px;
+      line-height:1.4;
+   }
+   .pointImage{
+      width:60%;
+      padding:0;
+      margin:0;
+   }
+}
+@media(max-width:780px){
+   .point{
+      flex-direction:column;
+      align-items:center;
+   }
+    .pointText h3{
+      font-size:30px;
+   }
+   .pointText p{
+      font-size:18px;
+      line-height:1.4;
+   }
+    .pointImage{
+      width:70%;
+      padding:0;
+      margin:0;
+   }
+   
+}
+@media(max-width:480px){
+   .points{
+       gap:2em;
+   }
+   .pointText h3{
+      font-size:28px;
+   }
+   .pointText p{
+      font-size:14px;
+      line-height:1.4;
+   }
+    .pointImage{
+      width:100%;
+      padding:0;
+      margin:0;
+   }
+}
