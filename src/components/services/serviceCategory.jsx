@@ -4,7 +4,6 @@ export default function Category(){
       <div className="serv">
          <div className="service">
          <div className="service_Image">
-            <img src="/estate.jpg"/>
             <img src="/furniture.jpg"/>
          </div>
          <div className="service_Text">
@@ -24,7 +23,6 @@ export default function Category(){
          </div>
          <div className="service">
          <div className="service_Image_sec">
-            <img src="/6.png"/>
             <img src="/7.jpeg"/>
          </div>
          <div className="service_Text">

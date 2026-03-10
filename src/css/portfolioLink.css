@@ -15,6 +15,11 @@
    padding:2px;
    width:100%;
 }
+.portLink_text a {
+  all: unset;
+  cursor: pointer;
+  display: contents;
+}
 .portLink_text h2{
    font-family:"Roboto Condensed";
    font-size:40px;

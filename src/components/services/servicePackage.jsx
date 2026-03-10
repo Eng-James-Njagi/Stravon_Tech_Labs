@@ -414,13 +414,13 @@ const PHONE = "254105140326"; // 0105140326 → international format
 
 function PackageCard({ pkg }) {
   const summary = [
-    `Hi, I'd like to inquire about the *${pkg.title}* package.`,
+    `Hi, I'd like to inquire about the: ${pkg.title} package.`,
     ``,
-    `📦 *Package:* ${pkg.title}`,
-    `💰 *Price:* ${pkg.price}`,
-    `📝 *About:* ${pkg.subtitle}`,
+    `Package: ${pkg.title}`,
+    `Price: ${pkg.price}`,
+    `About: ${pkg.subtitle}`,
     ``,
-    `✅ *Includes:*`,
+    `Includes:`,
     ...pkg.features.map((f) => `  • ${f}`),
     ``,
     `Please provide more details and next steps. Thank you.`,
@@ -471,7 +471,7 @@ function PackageCard({ pkg }) {
             textTransform: "uppercase",
             padding: "2px 10px",
             borderRadius: 20,
-            fontFamily: "inherit",
+            
           }}
         >
           Popular
@@ -486,7 +486,7 @@ function PackageCard({ pkg }) {
           color: "#c8a84b",
           letterSpacing: "-0.02em",
           marginBottom: 2,
-          fontFamily: "'Georgia', serif",
+          fontFamily: "'Archivo', serif",
         }}
       >
         {pkg.price}
@@ -496,6 +496,7 @@ function PackageCard({ pkg }) {
       <div
         style={{
           fontSize: 15,
+          fontFamily:'Roboto',
           fontWeight: 700,
           color: "#1a1a1a",
           marginBottom: 2,
@@ -533,6 +534,7 @@ function PackageCard({ pkg }) {
           flex: 1,
           display: "flex",
           flexDirection: "column",
+          fontFamily:'Archivo',
           gap: 8,
         }}
       >
@@ -669,7 +671,7 @@ function Section({ title, packages }) {
           style={{
             marginLeft: "auto",
             fontSize: 11,
-            color: "#aaa",
+            color: "#000000",
             fontWeight: 500,
           }}
         >
@@ -717,17 +719,17 @@ export default function ServicePackages() {
       <div style={{ textAlign: "center", marginBottom: 36 }}>
         <h1
           style={{
-            fontSize: 32,
+            fontSize: 42,
             fontWeight: 900,
             color: "#1a1a1a",
             margin: "0 0 8px",
-            fontFamily: "'Georgia', serif",
-            letterSpacing: "-0.03em",
+            fontFamily: "'Roboto Condensed', serif",
+            letterSpacing: "-0.02em",
           }}
         >
           Service Packages
         </h1>
-        <p style={{ color: "#888", fontSize: 14, margin: 0 }}>
+        <p style={{ color: "#000000", fontSize: 18, margin: 0, fontFamily:'Archivo' }}>
           Choose the right solution for your business
         </p>
       </div>
@@ -769,9 +771,9 @@ export default function ServicePackages() {
               fontWeight: 700,
               letterSpacing: "0.01em",
               background: activeTab === tab ? "#c8a84b" : "transparent",
-              color: activeTab === tab ? "#fff" : "#666",
+              color: activeTab === tab ? "#fff" : "#000000",
               transition: "background 0.18s, color 0.18s",
-              fontFamily: "inherit",
+              fontFamily: "Archivo",
             }}
           >
             {tab}
@@ -782,8 +784,8 @@ export default function ServicePackages() {
       {/* Description */}
       <p
         style={{
-          fontSize: 14,
-          color: "#666",
+          fontSize: 18,
+          color: "#000000",
           maxWidth: 620,
           lineHeight: 1.6,
           margin: "0 auto 36px",

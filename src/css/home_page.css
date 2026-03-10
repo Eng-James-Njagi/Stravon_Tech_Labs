@@ -35,6 +35,11 @@
    gap:16px;
    padding:2px 0;
 }
+
+.buttons a {
+  all: unset;
+}
+
 .buttons button {
    padding: 6px 1.2em;
    font-family: "Roboto Condensed";

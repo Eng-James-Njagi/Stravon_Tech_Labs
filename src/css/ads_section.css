@@ -2,30 +2,46 @@
    display:flex;
    align-items:center;
    flex-direction:row;
-   gap:1em;
+   gap:2em;
    padding:20px 0;
    margin:0 4em;
+   width:90%;
 }
 .addImage{
    flex-shrink:0;
    height:auto;
    object-fit:contain;
-   width:50%;
+   width:40%;
 }
 .addText{
    display:flex;
    flex-direction:column;
    gap:20px;
-   width:100%;
+   width:90%;
+}
+.addText a{
+   all:unset;
+}
+.addText small{
+   font-family:"Archivo";
+   color:#D4AF37;
+   cursor:pointer;
+}
+.addText small:hover{
+   color:#002147;
+   transition:0.2s all ease-in-out;
+   text-decoration:underline;
 }
 .addText h2{
    font-family:"Roboto Condensed";
    font-size:36px;
+   width:80%;
 }
 .addText p{
    font-family:"Open Sans";
    font-size:18px;
    line-height:1.6;
+   width:80%;
 }
 .addText button{
    background:#002147;
@@ -81,11 +97,13 @@
    }
 }
 @media(max-width:480px){
-   .add{
-      padding-left:1em;
+     .add{
+      margin: 0 1em;
+      padding-left: 0;
    }
    .addText{
-      width:100%;
+      padding-left: 0;
+      align-items: center;
    }
    .addText h2{
       font-size:24px;
