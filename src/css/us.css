@@ -1,4 +1,4 @@
-.us{
+.us {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,23 +13,23 @@
 }
 
 /* TEXT */
-.usText{
+.usText {
   display: flex;
   flex-direction: column;
   gap: 2em;
 
   flex: 1 1 0;
   min-width: 0;
-  text-align: center;
+  text-align: left;
 }
 
-.usText h2{
+.usText h2 {
   font-size: 64px;
   font-family: "Roboto Condensed";
   margin: 0;
 }
 
-.usText p{
+.usText p {
   font-size: 24px;
   font-family: "Archivo";
   font-weight: 200;
@@ -38,7 +38,7 @@
 }
 
 
-.usImage{
+.usImage {
   width: 300px;
   flex-shrink: 0;
   border-radius: 0 0 4em 4em;
@@ -46,60 +46,60 @@
 
 
 
-@media (max-width: 980px){
-  .usText h2{
+@media (max-width: 980px) {
+  .usText h2 {
     font-size: 40px;
   }
 
-  .usImage{
+  .usImage {
     width: 250px;
   }
 }
 
-@media (max-width: 780px){
-  .us{
+@media (max-width: 780px) {
+  .us {
     flex-direction: column;
     gap: 2em;
   }
 
-  .usText{
+  .usText {
     order: 2;
     align-items: center;
   }
 
-  .usText h2{
+  .usText h2 {
     font-size: 48px;
   }
 
-  .usText p{
+  .usText p {
     font-size: 16px;
   }
 
-  .usImage{
+  .usImage {
     width: 300px;
     order: 1;
   }
 }
 
-@media (max-width: 460px){
-  .us{
+@media (max-width: 460px) {
+  .us {
     gap: 1em;
     padding: 1.25em;
   }
 
-  .usText{
+  .usText {
     gap: 0.4em;
   }
 
-  .usText h2{
+  .usText h2 {
     font-size: 38px;
   }
 
-  .usText p{
+  .usText p {
     font-size: 15px;
   }
 
-  .usImage{
+  .usImage {
     width: 200px;
   }
 }

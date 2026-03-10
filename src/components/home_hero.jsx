@@ -1,4 +1,5 @@
 import "../css/home_page.css"
+import {Link} from 'react-router-dom'
 export default function HomeHero(){
    return(
       <>
@@ -17,8 +18,8 @@ export default function HomeHero(){
             </h3>
             <div className="buttons">
               <div className="buttons">
-                  <button className="btn-primary">View Products</button>
-                  <button className="btn-secondary">Portfolio</button>
+                  <Link to="/services"><button className="btn-primary">View our Services</button></Link>
+                  <Link to="/portfolio"><button className="btn-secondary">Portfolio</button></Link>
                </div>
             </div>
          </div>

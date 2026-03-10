@@ -1,4 +1,5 @@
 import '../css/portfolioLink.css'
+import {Link} from 'react-router-dom'
 export default function PortfolioLink(){
    return(
       <>
@@ -13,7 +14,7 @@ export default function PortfolioLink(){
                solutions, discover how we've helped
                businesses achieve their digital goals.
             </p>
-            <button>View Other Projects</button>
+            <Link to="/portfolio"><button>View Other Projects</button></Link>
          </div>
       </div>
       </>
