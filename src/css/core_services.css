@@ -1,171 +1,111 @@
-.core{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   gap: 1em;
+.core {
    width: 90%;
-   margin: 0 auto; 
+   margin: 20px auto;
 }
 
-.core h2{
+.core h2 {
    font-size: 40px;
    font-family: "Roboto";
+   text-align: center;
+   margin-bottom: 20px;
 }
 
-.coreCont{
-   display: flex;
-   align-items: center;
+.coreCont {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
    gap: 2em;
-   padding: 1em 1em; 
-   justify-content: center;
-   flex-wrap: wrap;
-   width: 100%; 
+   padding: 1em;
+   width: 86%;
+   box-sizing: border-box;
+   margin:0 auto;
 }
 
-.coreContainer{
-   display: flex;
+.coreContainer {
    overflow: hidden;
-   flex-direction: column;
-   align-items: center;
    background: #D4AF37;
    border-radius: 8px;
    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-   height: 450px;
-   max-width: 400px;
-   flex: 0 1 400px; 
 }
 
-.coreText{
+.coreImage {
+   width: 100%;
+   height: 200px;
+   object-fit: cover;
+   display: block;
+}
+
+.coreText {
    display: flex;
    flex-direction: column;
    align-items: center;
    gap: 4px;
    text-align: center;
-   background: transparent;
    padding: 10px;
    margin-top: 10px;
 }
 
-.coreText h3{
+.coreText h3 {
    font-size: 30px;
-   font-family: "Roboto Condensed";
-   font-weight: 600;
+   font-family: "Archivo";
+   font-weight: 500;
 }
 
-.coreText p{
-   font-family: "Archivo";
-   font-size: 22px;
+.coreText p {
+   font-family: "Open Sans";
+   font-size: 20px;
    font-weight: 300;
 }
 
-.coreImage{
-   width: 100%;
-   height: 200px;
-   object-fit: cover;
-   display: block;
-   border-radius: 8px;
-}
-
-@media(max-width: 980px){
-   .core{
-      width: 90%;
-   }
-   
-   .core h2{
+@media(max-width: 980px) {
+   .core h2 {
       font-size: 36px;
    }
-   
-   .coreContainer{
-      height: 420px;
-      max-width: 350px;
-      flex: 0 1 350px;
+
+   .coreCont {
+      grid-template-columns: repeat(2, 1fr);
    }
-   
-   .coreImage{
+
+   .coreImage {
       height: 180px;
    }
-   
-   .coreText h3{
+
+   .coreText h3 {
       font-size: 28px;
    }
-   
-   .coreText p{
+
+   .coreText p {
       font-size: 20px;
    }
 }
 
-@media(max-width: 780px){
-   .core{
-      width: 92%;
-   }
-   
-   .coreCont{
-      gap: 2em;
-      
-   }
-   
-   .core h2{
-      font-size: 34px;
-   }
-   
-   .coreContainer{
-      height: 380px;
-      max-width: 300px;
-      flex: 0 1 300px;
-   }
-   
-   .coreImage{
-      height: 160px;
-   }
-   
-   .coreText{
-      padding: 8px;
-   }
-   
-   .coreText h3{
-      font-size: 26px;
-   }
-   
-   .coreText p{
-      font-size: 19px;
-   }
-}
-
-@media(max-width: 480px){
-   .core{
+@media(max-width: 480px) {
+   .core {
       width: 90%;
    }
-   
-   .coreCont{
-      gap: 2em;
-      
+
+   .core h2 {
+      font-size: 30px;
    }
-   
-   .core h2{
-      font-size: 32px;
+
+   .coreCont {
+      grid-template-columns: 1fr;
+      gap: 1.5em;
    }
-   
-   .coreContainer{
-      height: 300px;
-      max-width: 80%;
-      flex: 0 1 80%;
+
+   .coreImage {
+      height: 160px;
    }
-   
-   .coreImage{
-      height: 150px;
-   }
-   
-   .coreText{
+
+   .coreText {
       gap: 2px;
       padding: 8px;
    }
-   
-   .coreText h3{
-      font-size: 24px;
+
+   .coreText h3 {
+      font-size: 22px;
    }
-   
-   .coreText p{
+
+   .coreText p {
       font-size: 18px;
    }
 }

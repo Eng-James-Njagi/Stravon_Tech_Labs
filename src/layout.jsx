@@ -10,8 +10,10 @@ export default function Layout() {
    return (
       <header>
          <div className="logo">
+           <NavLink to="/">
             <img src="/Com.jpg" />
             <h1>Stravon Tech Labs</h1>
+           </NavLink>
          </div>
          <nav className={isOpen ? "nav-open" : ""}>
             <ul>

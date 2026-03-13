@@ -4,6 +4,7 @@ import Us from '../components/us'
 import Points from '../components/points'
 import Core from '../components/core_services'
 import PortfolioLink from '../components/portfolio'
+import Testimonials from '../components/portfolio/testimonials'
 export default function Home(){
    return(
       <>
@@ -13,6 +14,7 @@ export default function Home(){
       <Points />
       <Core />
       <PortfolioLink />
+      <Testimonials/>
       </>
    )
 }

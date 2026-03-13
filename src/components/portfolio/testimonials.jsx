@@ -3,15 +3,15 @@ import "../../css/portfolio/testimonial.css";
 const testimonials = [
   {
     id: 1,
-    name: "Terry Grace",
-    company: "RedStone System",
+    name: "Rose Ngugi",
+    company: "GSSSystem",
     rating: 3,
-    text: "Stravon Tech Labs transformed our online presence completely. The new website not only looks professional but has increased our customer inquiries by 200%.",
+    text: "Stravon Tech Lab exceeded my expectations while developing a custom sales and stock management system for my school project. Their team was professional and responsive, delivering a reliable solution that can easily adapt into a full business system. I highly recommend them for their expertise and commitment to client satisfaction.",
     avatar: null,
   },
   {
     id: 2,
-    name: "Rose Ann",
+    name: "Terry Grace",
     company: "Venture Capital System",
     rating: 2,
     text: "Stravon Tech Labs transformed our online presence completely. The new website not only looks professional but has increased our customer inquiries by 200%.",
