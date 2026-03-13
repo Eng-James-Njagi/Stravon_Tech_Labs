@@ -7,8 +7,8 @@ export default function About(){
       <>
       <HeroSection/>
       <PointUs/>
-      <Facts/>
       <Company/>
+      <Facts/>
       </>
    )
 }
