@@ -1,128 +1,175 @@
-.add{
-   display:flex;
-   align-items:center;
-   flex-direction:row;
-   gap:2em;
-   padding:20px 0;
-   margin:0 4em;
-   width:90%;
+.add {
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+   justify-content:space-evenly;
+   padding: 20px 0;
+   margin: 0 auto;
+   width: 90%;
+   gap:4em;
 }
-.addImage{
-   flex-shrink:0;
-   height:auto;
-   object-fit:contain;
-   width:40%;
+
+.addImage {
+   flex-shrink: 0;
+   height: auto;
+   object-fit: contain;
+   width: 44%;
 }
-.addText{
-   display:flex;
-   flex-direction:column;
-   gap:20px;
-   width:90%;
+
+.addText {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   width: 100%;
 }
-.addText a{
-   all:unset;
+
+.addText a {
+   all: unset;
 }
-.addText small{
-   font-family:"Archivo";
-   color:#D4AF37;
-   cursor:pointer;
+
+.addText small {
+   font-family: "Roboto";
+   color: #D4AF37;
+   cursor: pointer;
+   display: inline-block;
 }
-.addText small:hover{
-   color:#002147;
-   transition:0.2s all ease-in-out;
-   text-decoration:underline;
+
+.addText small:hover {
+   color: #002147;
+   transition: 0.2s all ease-in-out;
+   text-decoration: underline;
+   transform: translateX(4px);
 }
-.addText h2{
-   font-family:"Roboto Condensed";
-   font-size:36px;
-   width:80%;
+
+.addText h2 {
+   font-family: "Archivo";
+   font-size: 36px;
+   width: 80%;
 }
-.addText p{
-   font-family:"Open Sans";
-   font-size:18px;
-   line-height:1.6;
-   width:80%;
+
+.addText p {
+   font-family: "Open Sans";
+   font-size: 18px;
+   line-height: 1.6;
+   width: 80%;
 }
-.addText button{
-   background:#002147;
-   border:none;
-   color:white;
-   font-family:"Roboto Condensed";
-   padding:10px 1.4em;
-   font-size:20px;
-   width:80%;
-   border-radius:0.2em;
+
+.addText button {
+   background: #002147;
+   border: none;
+   color: white;
+   font-family: "Roboto Condensed";
+   padding: 10px;
+   font-size: 20px;
+   width: 60%;
+   border-radius: 0.2em;
+   cursor: pointer;
 }
-.addText button:active{
-   background:#D4AF37;
-   transition:all 0.5s ease-in-out;
+
+.addText button:hover {
+   background: #EBD281;
+   border-radius: 0.4em;
+   transition: all 0.5s ease;
+   color: black;
 }
-.addText button:hover{
-   background:#EBD281;
-  /* border:4px solid #D4AF37;*/
-   border-radius:0.4em;
-   transition:all 0.5s ease;
-   color:black;
+
+.addText button:active {
+   background: #D4AF37;
+   transition: all 0.5s ease-in-out;
 }
-.addText button:active{
-   background:#D4AF37;
-   transition:all 0.5s ease-in-out;
-}
-@media(max-width:780px){
+@media(max-width:980px){
    .add{
       display:flex;
+      margin:20px auto;
       flex-direction:column;
+      width:90%;
+      gap:2em;
+      transition:all 0.2 ease-in-out;
+      padding:4px;
       align-items:center;
-      gap:1em;
    }
    .addImage{
-      width:94%;
+      width:60%;
+      padding:2px;
+      object-fit:contain;
+      margin:0 auto;
    }
    .addText{
-      text-align:center;
-      gap:20px;
-      width:96%;
-      padding-left:1em;
+      margin:0 auto;
+      padding:3px;
+      width:100%;
+      align-items:center;
    }
    .addText h2{
-      font-size:32px;
+      font-size:38px;
+      padding:2px;
+      text-align:center;
    }
    .addText p{
-      font-size:16px;
+      font-size:24px;
+      line-height:1.8;
    }
    .addText button{
-      width:80%;
-      padding:6px 2em;
-      margin-left:2em;
+      width:100%;
+      padding:14px;
    }
 }
-@media(max-width:480px){
-     .add{
-      margin: 0 1em;
-      padding-left: 0;
-   }
-   .addText{
-      padding-left: 0;
+
+@media(max-width: 780px) {
+   .add {
+      flex-direction: column;
       align-items: center;
-   }
-   .addText h2{
-      font-size:24px;
-      width:100%;
-   }
-   .addText p{
-      font-size:12px;
-      width:100%;
-   }
-   .addText button{
-      width:100%;
-      padding:6px 0.6em;
-      margin-left:0;
-      font-size:16px;
-   }
-   .addImage{
-   width: auto;
-   height: clamp(120px, 50vw, 300px);
-   object-fit: contain;
+      gap: 1em;
    }
 
+   .addImage {
+      width: 70%;
+   }
+
+   .addText {
+      text-align: center;
+      align-items: center;
+      width: 90%;
+   }
+
+   .addText h2 {
+      font-size: 32px;
+      width: 100%;
+   }
+
+   .addText p {
+      font-size: 18px;
+      width: 100%;
+   }
+
+   .addText button {
+      width: 100%;
+   }
+}
+
+@media(max-width: 480px) {
+   .add {
+      width: 94%;
+      margin: 0 auto;
+      padding: 10px 0;
+   }
+
+   .addImage {
+      width: auto;
+      height: clamp(120px, 50vw, 300px);
+      object-fit: contain;
+   }
+
+   .addText h2 {
+      font-size: 24px;
+   }
+
+   .addText p {
+      font-size: 14px;
+   }
+
+   .addText button {
+      width: 100%;
+      font-size: 16px;
+   }
 }

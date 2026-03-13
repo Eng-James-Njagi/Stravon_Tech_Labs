@@ -14,7 +14,7 @@ export default function PortfolioLink(){
                solutions, discover how we've helped
                businesses achieve their digital goals.
             </p>
-            <Link to="/portfolio"><button>View Other Projects</button></Link>
+            <Link to="/portfolio"><button>View Other Projects→</button></Link>
          </div>
       </div>
       </>
