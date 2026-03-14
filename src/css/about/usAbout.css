@@ -12,15 +12,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
 }
-
 
 /* ── Card ── */
 .points-card {
+  display: flex;
+  flex-direction: column;
   border-radius: 12px;
   overflow: hidden;
   border: 1.5px solid #d4bc6e;
-  background: #fff;
+  background: #c9b064;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -31,28 +33,34 @@
 }
 
 /* ── Image area ── */
+.points-card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 .points-card-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   display: block;
-  background: #f5f2ec;
 }
 
 .points-card-image-placeholder {
   width: 100%;
-  height: 200px;
-  background: #f5f2ec;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: #c9b064;
+  flex-shrink: 0;
 }
 
 /* ── Body ── */
 .points-card-body {
   background: #c9b064;
   padding: 24px 28px 28px;
-  height:100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .points-card-title {

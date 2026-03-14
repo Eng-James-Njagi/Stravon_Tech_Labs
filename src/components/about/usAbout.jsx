@@ -38,11 +38,13 @@ export default function PointsUs() {
         {cards.map((card) => (
           <div className="points-card" key={card.id}>
             {card.image ? (
-              <img
-                src={card.image}
-                alt={card.title}
-                className="points-card-image"
-              />
+              <div className="points-card-image-wrapper">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="points-card-image"
+                />
+              </div>
             ) : (
               <div className="points-card-image-placeholder" />
             )}

@@ -1,107 +1,171 @@
-.points{
-   display:flex;
-   flex-direction:column;
-   align-items:center;
-   gap:1em;
-   width:90%;
-   margin:10px auto;
-}
-.point{
-   display:flex;
-   align-items:center;
-   width:80%;
-   gap:1em;
-   margin:10px auto;
-}
-.pointText{
-   gap:20px;
-   display:flex;
-   flex-direction:column;
-   width:80%;
-}
-.pointText h3{
-   font-size:42px;
-   font-family:"Archivo";
-}
-.pointText p{
-   font-size:22px;
-   line-height:1;
-   font-family:"Open Sans";
-   font-weight:350;
-}
-.pointImage{
-   height:50%;
-   width:auto;
-   object-fit:cover;
-}
-@media (min-width: 780px) {
-  .point.reverse .pointText  { order: 0; }
-  .point.reverse .pointImage { order: 1; }
+.points-section {
+  width: 86%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0;
+  box-sizing: border-box;
 }
 
-@media(max-width:980px){
-   .points{
-      flex-direction:column;
-      align-items:center;
-      gap:4em;
-   }
-   .point{
-      align-items:center;
-      gap:40px;
-   }
-   .pointText{
-      align-items:center;
-      text-align:center;
-      line-height:1;
-      gap:10px;
-      width:100%;
-   }
-   .pointText h3{
-      font-size:40px;
-   }
-   .pointText p{
-      font-size:24px;
-      line-height:1.4;
-   }
-   .pointImage{
-      width:60%;
-      padding:0;
-      margin:0;
-   }
+/* ── Grid ── */
+.points-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-@media(max-width:780px){
-   .point{
-      flex-direction:column;
-      align-items:center;
-   }
-    .pointText h3{
-      font-size:30px;
-   }
-   .pointText p{
-      font-size:18px;
-      line-height:1.4;
-   }
-    .pointImage{
-      width:70%;
-      padding:0;
-      margin:0;
-   }
-   
+
+/* ── Card ── */
+.points-card {
+  border: 1.5px solid #d4bc6e;
+  border-radius: 12px;
+  background: #fff;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-@media(max-width:480px){
-   .points{
-       gap:2em;
-   }
-   .pointText h3{
-      font-size:28px;
-   }
-   .pointText p{
-      font-size:14px;
-      line-height:1.4;
-   }
-    .pointImage{
-      width:100%;
-      padding:0;
-      margin:0;
-   }
+
+.points-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
+}
+
+/* ── Card inner layout ── */
+.about-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-card-inner.image-right {
+  flex-direction: row-reverse;
+}
+
+/* ── Image ── */
+.about-card-img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  border: 1.5px solid #e8d48a;
+}
+
+.about-card-img-placeholder {
+  width: 140px;
+  height: 160px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f0ece4, #d8d2c6);
+  flex-shrink: 0;
+  border: 1.5px solid #e8d48a;
+}
+
+/* ── Text block ── */
+.about-card-text {
+  flex: 1;
+}
+
+.about-card-title {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1713;
+  margin: 0 0 10px;
+}
+
+.about-card-body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #1a1713;
+  margin: 0 0 14px;
+}
+
+/* ── Tags ── */
+.about-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about-card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1713;
+  background: #c9b064;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+}
+
+.about-card-tag svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive: 1100px ── */
+@media (max-width: 1100px) {
+  .about-card-img,
+  .about-card-img-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+
+  .about-card-title {
+    font-size: 18px;
+  }
+
+  .about-card-body {
+    font-size: 13.5px;
+  }
+}
+
+/* ── Responsive: 740px ── */
+@media (max-width: 740px) {
+  .points-card {
+    padding: 22px 20px;
+  }
+
+  .about-card-img,
+  .about-card-img-placeholder {
+    width: 84px;
+    height: 84px;
+  }
+
+  .about-card-title {
+    font-size: 16px;
+  }
+
+  .about-card-body {
+    font-size: 13px;
+  }
+}
+
+/* ── Responsive: 480px ── */
+@media (max-width: 480px) {
+  .points-section {
+    width: 100%;
+    padding: 40px 16px;
+  }
+
+  .about-card-inner,
+  .about-card-inner.image-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-card-img,
+  .about-card-img-placeholder {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+  }
+
+  .about-card-title {
+    font-size: 17px;
+  }
 }

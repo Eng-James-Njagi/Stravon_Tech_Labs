@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: space-evenly;
   gap: 1em;
-  width:90%;
-  margin: 10px auto;
+  width:86%;
+  margin: 5px auto;
   padding: 1em;
   box-sizing: border-box;
 }
@@ -18,13 +18,13 @@
 }
 
 .usText h2 {
-  font-size: 64px;
+  font-size: 60px;
   font-family: "Archivo";
   padding:2px;
 }
 
 .usText p {
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Open Sans";
   line-height: 1.8;
   margin: 0;
@@ -34,7 +34,7 @@
 
 
 .usImage {
-  width: 25%;
+  width: 20%;
   border-radius: 0 0 4em 4em;
 }
 
