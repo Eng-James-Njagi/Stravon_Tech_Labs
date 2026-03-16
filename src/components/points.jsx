@@ -37,25 +37,25 @@ const cards = [
 
 export default function PointsSection() {
   return (
-    <section className="about-section">
-      <h2 className="about-section-title">Our Tags</h2>
+    <section className="tags-section">
+      <h2 className="tags-section-title">Our Tags</h2>
 
-      <div className="about-cards">
+      <div className="tags-cards">
         {cards.map((card) => (
-          <div className="about-card" key={card.id}>
-            <div className={`about-card-inner${card.imagePosition === 'right' ? ' image-right' : ''}`}>
+          <div className="tags-card" key={card.id}>
+            <div className={`tags-card-inner${card.imagePosition === 'right' ? ' image-right' : ''}`}>
               {card.imageSrc ? (
-                <img src={card.imageSrc} alt={card.title} className="about-card-img" />
+                <img src={card.imageSrc} alt={card.title} className="tags-card-img" />
               ) : (
-                <div className="about-card-img-placeholder" aria-hidden="true" />
+                <div className="tags-card-img-placeholder" aria-hidden="true" />
               )}
-              <div className="about-card-text">
-                <h3 className="about-card-title">{card.title}</h3>
-                <p className="about-card-body">{card.body}</p>
+              <div className="tags-card-text">
+                <h3 className="tags-card-title">{card.title}</h3>
+                <p className="tags-card-body">{card.body}</p>
                 {card.tags.length > 0 && (
-                  <div className="about-card-tags">
+                  <div className="tags-card-tags">
                     {card.tags.map((tag, i) => (
-                      <span key={i} className="about-card-tag">{tag}</span>
+                      <span key={i} className="tags-card-tag">{tag}</span>
                     ))}
                   </div>
                 )}
