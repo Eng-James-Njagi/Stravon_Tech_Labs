@@ -77,8 +77,8 @@
 }
 
 .about-card-title {
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 20px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 22px;
   font-weight: 700;
   color: #1a1713;
   margin: 0 0 10px;
@@ -86,7 +86,7 @@
 
 .about-card-body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.75;
   margin: 0 0 14px;
 }
@@ -97,12 +97,12 @@
   align-items: center;
   gap: 6px;
   font-family: 'Archivo', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   color: #1a1713;
   background: #c9b064;
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 8px 14px;
+  border-radius: 5px;
   border: none;
 }
 
